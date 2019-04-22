@@ -6,6 +6,7 @@
 <title>Home</title>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 		<script src="resources/js/signupSignin.js"></script>
+		<script type="text/javascript" src="resources/js/signin_up.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -196,37 +197,55 @@ body {
 					<th class="searchbtn1">
 						<a style="margin:0 5 0 5" href="javascript:searchBook()"><img alt="" src="resources/img/iconfinder_11_Search_106236.png" width="20"></a>		
 					</th>
-					<th class="searchbtn2">
-						<a style="margin:0 5 0 5" href=""><img alt="" src="resources/img/iconfinder_microphone_1608550.png" width="20"></a>
-					</th>
 				</tr>
 				</table>
 			</form>
 	
 		<!-- sign in , sign up , menu-->
-		<table class="navbar" style="width: 1050px"><tr><td style="width: 802px;">
+			<table class="navbar" style="width: 1050px"><tr><td style="width: 802px;">
 			<ul class="menu">
 				<li><a href="groupList">community</a></li>
-				<li><a href="#">menu2</a></li>
-				<li><a href="#">menu3</a></li>
+				<li><a href="recommend">recommend</a></li>
+				<c:if test="${loginId != null }">
+				<li><a href="book_reply">reply</a></li>
+				</c:if>
 			</ul>
-		</td><td>
-			<nav class="main-nav" style="margin-right: 0px;width: 190;">
-			<table><tr><td style="width: 88px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
-				<ul class="signinup">
-					<li style="margin-left: 0px;">
-					<a href="#0" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="cd-signin">Sign in</a>
-					</li>
-				</ul>
-				</td><td style="width: 93px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
-				<ul class="signinup">
-					<li style="margin-left: 0px;">
-					<a href="#0" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="cd-signup">Sign up</a>
-					</li>
-				</ul>
-			</td></tr></table>
-			</nav>
-		</td></tr></table>		
+			</td><td>
+				<c:if test="${loginId == null }">
+					<nav id="main-nav" class="main-nav" style="margin-right: 0px;width: 200;">
+						<table><tr><td style="width: 88px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
+							<ul class="signinup">
+								<li style="margin-left: 0px;">
+									<a href="#0" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="cd-signin">Sign in</a>
+								</li>
+							</ul>
+						</td><td style="width: 93px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
+							<ul class="signinup">
+								<li style="margin-left: 0px;">
+									<a href="#0" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="cd-signup">Sign up</a>
+								</li>
+							</ul>
+						</td></tr></table>
+					</nav>
+				</c:if>
+				<c:if test="${loginId != null }">
+					<nav class="main-nav2" style="margin-right: 0px;width: 200;float: right;">
+						<table><tr><td style="width: 88px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
+							<ul class="userBar">
+								<li style="margin-left: 0px;">
+									<a href="logout" style="width:102; margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="ub-logout">Log out</a>
+								</li>
+							</ul>
+						</td><td style="width: 93px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
+							<ul class="userBar">
+								<li style="margin-left: 0px;">
+									<a href="my-account" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="ub-lib" >Account</a>
+								</li>
+							</ul>
+						</td></tr></table>
+					</nav>
+				</c:if>
+			</td></tr></table>		
 <!-- //////////////sign up sign in 버튼 눌렀을때 모달 창///////////// -->
 	
 	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
@@ -235,7 +254,6 @@ body {
 				<li><a href="#0" class="selected" id="switcherSignin">Sign in</a></li>
 				<li><a href="#0" class="selected" id="switcherSignup">New account</a></li>
 			</ul>
-<c:if test=""></c:if>
 			<div id="cd-login"> <!-- log in form -->
 				<form class="cd-form"action="login" method="post">
 					<p class="fieldset">
@@ -246,8 +264,8 @@ body {
 
 					<p class="fieldset">
 						<label class="image-replace" for="signin-password">Password</label>
-						<input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password" name="password">
-						<a href="#0" class="hide-password">Hide</a>
+						<input class="full-width has-padding has-border" id="signin-password" type="password"  placeholder="Password" name="password">
+						<a href="#0" class="hide-password">Show</a>
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
@@ -261,31 +279,62 @@ body {
 			</div> <!-- cd-login -->
 
 			<div id="cd-signup"> <!-- sign up form -->
-				<form class="cd-form">
+				<form class="cd-form" action="join" method="post" onsubmit="return checkSignUp()">
 					<p class="fieldset">
 						<label class="image-replace" for="signup-username">Username</label>
-						<input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-						<span class="cd-error-message">Error message here!</span>
+						<input class="full-width has-padding has-border" id="signup-username" name="name" type="text" placeholder="Username">
+						<span class="cd-error-message" >Error message here!</span>
 					</p>
 
 					<p class="fieldset">
+						<label class="image-replace" for="signup-nickname">Nickname</label>
+						<input class="full-width has-padding has-border" id="signup-nickname" type="text" name="nickname" placeholder="Nick name">
+						<div id="error2"></div>
+						<span class="cd-error-message" >Error message here!</span>
+					</p>
+					
+					<p class="fieldset">
 						<label class="image-replace" for="signup-id">ID</label>
-						<input class="full-width has-padding has-border" id="signup-id" type="text" placeholder="ID">
-						<span class="cd-error-message">Error message here!</span>
+						<input class="full-width has-padding has-border" id="signup-id" name="id" type="text" placeholder="ID">
+						<div id="error"></div>
+						<span class="cd-error-message" >Error message here!</span>
 					</p>
 
 					<p class="fieldset">
 						<label class="image-replace" for="signup-password">Password</label>
-						<input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
-						<a href="#0" class="hide-password">Hide</a>
+						<input class="full-width has-padding has-border" id="signup-password" name="password" type="password"  placeholder="Password">
+						<a href="#0" class="hide-password">Show</a>
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+					<p class="fieldset">
+						<label class="image-replace" for="signup-password">Password_Check</label>
+						<input class="full-width has-padding has-border" id="signup-password2" type="password"  placeholder="Password">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 
 					<p class="fieldset">
+						<label class="image-replace" for="signup-nickname">Email</label>
+						<input class="full-width has-padding has-border" id="signup-email" name="email" type="email" placeholder="email">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+					
+					<p class="fieldset">
+						<label class="image-replace" for="signup-gender">Gender</label>
+						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+					
+					<p class="fieldset">
+						<label class="image-replace" for="signup-birth">BirthDay</label>
+						생일을 입력해 주세요.
+						<input type="date" name="birthday" id="birth">
+						<span class="cd-error-message">Error message here!</span>
+					</p>
+					
+					<p class="fieldset">
 						<input class="full-width has-padding" type="submit" value="Create account">
 					</p>
 				</form>
-<c:if test=""></c:if>
 				<!-- <a href="#0" class="cd-close-form">Close</a> -->
 			</div> <!-- cd-signup -->
 		</div> <!-- cd-user-modal-container -->

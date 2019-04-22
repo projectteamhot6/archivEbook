@@ -125,9 +125,6 @@ img {vertical-align: middle;}
 					<th class="searchbtn1">
 						<a style="margin:0 5 0 5" href="javascript:searchBook()"><img alt="" src="resources/img/iconfinder_11_Search_106236.png" width="20"></a>		
 					</th>
-					<th class="searchbtn2">
-						<a style="margin:0 5 0 5" href=""><img alt="" src="resources/img/iconfinder_microphone_1608550.png" width="20"></a>
-					</th>
 				</tr>
 				</table>
 			</form>
