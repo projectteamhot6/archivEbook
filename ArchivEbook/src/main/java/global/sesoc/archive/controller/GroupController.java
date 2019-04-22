@@ -28,7 +28,6 @@ public class GroupController {
 	GroupDAO dao;
 
 	// 게시판 관련 상수값들
-	final int countPerPage = 10; // 페이지 당 글 수
 	final int pagePerGroup = 5; // 페이지 이동 그룹 당 표시할 페이지 수
 	
 	final int GroupPerPage = 5; // 페이지 당 글 수
