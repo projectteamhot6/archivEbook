@@ -405,6 +405,16 @@ function searchBook(){
 	</div>
 	<script type="text/javascript">
 	function make_group(){
+		var gn = $('#groupname').val();
+		var gi = $('#groupintroduce').val();
+		if(gn.length < 1){
+			alert('그룹이름을 적어주세요.');
+			return;
+		}
+		if(gi.length < 10){
+			alert('그룹 소개를 더 길게 입력해주세요.');
+			return;
+		}
 		$('#makeGroup_form').submit();
 	}
 	</script>

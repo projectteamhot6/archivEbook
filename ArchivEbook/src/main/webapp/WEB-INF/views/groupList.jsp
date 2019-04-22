@@ -405,16 +405,21 @@ function searchBook(){
 }
 
 function makeGroup() {
-	location.href = "makeGroup";
+	$.ajax({
+		url : 'checkMaster'
+		, type : 'get'
+		, dataType : 'text'
+		, success : function(e){
+			if(e == 0){
+				location.href="makeGroup"
+			}
+			else{
+				alert('이미 그룹을 만드셨습니다.');
+			}
+		}
+	});
 }
 
-$(document).ready(function() {
-	$('#joinGroup').on('click', joinGroup);
-});
-
-function joinGroup() {
-	location.href = "joinGroup";
-}
 
 </script>
 

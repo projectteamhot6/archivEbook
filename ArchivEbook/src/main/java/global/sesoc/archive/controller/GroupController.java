@@ -124,7 +124,10 @@ public class GroupController {
 		logger.debug("{}",community);
 		String id = (String) session.getAttribute("loginId");
 		String nickname = (String) session.getAttribute("loginNickname");
-
+		int result2 = dao.checkMaster(id);
+		if(result2 != 0){
+			return "redirect : /";
+		}
 		community.setId(id);
 		community.setNickname(nickname);
 
