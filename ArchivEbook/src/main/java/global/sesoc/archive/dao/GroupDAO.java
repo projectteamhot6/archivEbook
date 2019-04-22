@@ -238,4 +238,11 @@ public class GroupDAO {
 		return groupnum;
 	}
 
+	public int checkMaster(String id) {
+		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
+		int result = 0;
+		result = mapper.checkMaster(id);
+		return result;
+	}
+
 }

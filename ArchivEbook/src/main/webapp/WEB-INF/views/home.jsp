@@ -102,7 +102,6 @@ img {vertical-align: middle;}
 <body>
 
 
-
 <!-- ///////////////////////////////////헤더임///////////////////////////////////////// -->
 <div class="header" id="header">
 	<div class="headerIn">
@@ -124,6 +123,9 @@ img {vertical-align: middle;}
 						<input type="text" id="bookName" name="bookName" placeholder="search.."></th>
 					<th class="searchbtn1">
 						<a style="margin:0 5 0 5" href="javascript:searchBook()"><img alt="" src="resources/img/iconfinder_11_Search_106236.png" width="20"></a>		
+					</th>
+					<th class="searchbtn2">
+						<a style="margin:0 5 0 5" href=""><img alt="" src="resources/img/iconfinder_microphone_1608550.png" width="20"></a>
 					</th>
 				</tr>
 				</table>
@@ -274,6 +276,9 @@ img {vertical-align: middle;}
 <!-- /////////////////////////////////////검색 옵션 부분 js////////////////////////////////////////////////// -->
 <script src="resources/js/searchOption.js"></script>
 <!-- /////////////////////////////////////검색 옵션 부분 js////////////////////////////////////////////////// -->
+
+
+
 
 
 

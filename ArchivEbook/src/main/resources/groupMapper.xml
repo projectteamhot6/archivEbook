@@ -238,4 +238,15 @@
 	<select id="getGroupNum" parameterType="String" resultType="int">
 		select groupnum from group_user where groupname = #{groupname}
 	</select>
+	
+	<select id="checkMaster" parameterType="String" resultType="int">
+		select 
+			count(*) 
+		from 
+			community 
+		where 
+			id = #{id} 
+			and 
+			group_master = 1
+	</select>
 </mapper>

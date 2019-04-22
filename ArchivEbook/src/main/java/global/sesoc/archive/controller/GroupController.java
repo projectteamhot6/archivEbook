@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import global.sesoc.archive.dao.GroupDAO;
 import global.sesoc.archive.vo.CommunityVO;
@@ -133,6 +134,15 @@ public class GroupController {
 		res = dao.inputGu(community);
 
 		return "redirect:groupList";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="checkMaster", method=RequestMethod.GET)
+	public String checkMaster(HttpSession session){
+		int result = 0;
+		String id = (String)session.getAttribute("loginId");
+		result = dao.checkMaster(id);
+		return ""+result;
 	}
 
 	@RequestMapping(value = "joinGroup", method = RequestMethod.GET)

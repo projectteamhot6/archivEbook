@@ -78,4 +78,6 @@ public interface GroupMapper {
 	// groupname으로 그룹번호 받아오기 
 		public int getGroupNum(String groupname);
 
+		public int checkMaster(String id);
+
 }

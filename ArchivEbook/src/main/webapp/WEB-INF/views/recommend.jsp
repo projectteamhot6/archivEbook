@@ -105,7 +105,6 @@ body {
 <body>
 
 
-
 <!-- ///////////////////////////////////헤더임///////////////////////////////////////// -->
 <div class="header" id="header">
 	<div class="headerIn">
@@ -128,12 +127,15 @@ body {
 					<th class="searchbtn1">
 						<a style="margin:0 5 0 5" href="javascript:searchBook()"><img alt="" src="resources/img/iconfinder_11_Search_106236.png" width="20"></a>		
 					</th>
+					<th class="searchbtn2">
+						<a style="margin:0 5 0 5" href=""><img alt="" src="resources/img/iconfinder_microphone_1608550.png" width="20"></a>
+					</th>
 				</tr>
 				</table>
 			</form>
 	
 		<!-- sign in , sign up , menu-->
-		<table class="navbar" style="width: 1050px"><tr><td style="width: 802px;">
+			<table class="navbar" style="width: 1050px"><tr><td style="width: 802px;">
 			<ul class="menu">
 				<li><a href="groupList">community</a></li>
 				<li><a href="recommend">recommend</a></li>
@@ -141,43 +143,44 @@ body {
 				<li><a href="book_reply">reply</a></li>
 				</c:if>
 			</ul>
-		</td><td>
-		<c:if test="${loginId == null }">
-			<nav id="main-nav" class="main-nav" style="margin-right: 0px;width: 190;">
-			<table><tr><td style="width: 88px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
-				<ul class="signinup">
-					<li style="margin-left: 0px;">
-					<a href="#0" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="cd-signin">Sign in</a>
-					</li>
-				</ul>
-				</td><td style="width: 93px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
-				<ul class="signinup">
-					<li style="margin-left: 0px;">
-					<a href="#0" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="cd-signup">Sign up</a>
-					</li>
-				</ul>
-			</td></tr></table>
-			</nav>
-		</c:if>
-		<c:if test="${loginId != null }">
-				<nav class="main-nav2" style="margin-right: 0px;width: 190;">
-			<table><tr><td style="width: 88px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
-				<ul class="userBar">
-					<li style="margin-left: 0px;">
-					<a href="logout" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="ub-logout">log out</a>
-					</li>
-				</ul>
-				</td><td style="width: 93px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
-				<ul class="userBar">
-					<li style="margin-left: 0px;">
-					<a href="my-account" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="ub-lib" >account</a>
-					</li>
-				</ul>
-			</td></tr></table>
-			</nav>
-		</c:if>
-		</td></tr></table>		
+			</td><td>
+				<c:if test="${loginId == null }">
+					<nav id="main-nav" class="main-nav" style="margin-right: 0px;width: 200;">
+						<table><tr><td style="width: 88px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
+							<ul class="signinup">
+								<li style="margin-left: 0px;">
+									<a href="#0" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="cd-signin">Sign in</a>
+								</li>
+							</ul>
+						</td><td style="width: 93px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
+							<ul class="signinup">
+								<li style="margin-left: 0px;">
+									<a href="#0" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="cd-signup">Sign up</a>
+								</li>
+							</ul>
+						</td></tr></table>
+					</nav>
+				</c:if>
+				<c:if test="${loginId != null }">
+					<nav class="main-nav2" style="margin-right: 0px;width: 200;float: right;">
+						<table><tr><td style="width: 88px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
+							<ul class="userBar">
+								<li style="margin-left: 0px;">
+									<a href="logout" style="width:102; margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="ub-logout">Log out</a>
+								</li>
+							</ul>
+						</td><td style="width: 93px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
+							<ul class="userBar">
+								<li style="margin-left: 0px;">
+									<a href="my-account" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="ub-lib" >Account</a>
+								</li>
+							</ul>
+						</td></tr></table>
+					</nav>
+				</c:if>
+			</td></tr></table>		
 <!-- //////////////sign up sign in 버튼 눌렀을때 모달 창///////////// -->
+	
 	<div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
 		<div class="cd-user-modal-container"> <!-- this is the container wrapper -->
 			<ul class="cd-switcher">
@@ -276,6 +279,10 @@ body {
 <!-- /////////////////////////////////////검색 옵션 부분 js////////////////////////////////////////////////// -->
 <script src="resources/js/searchOption.js"></script>
 <!-- /////////////////////////////////////검색 옵션 부분 js////////////////////////////////////////////////// -->
+
+
+
+
 <div>
 <div id="listBook" style="padding-top : 200px">
 <div class="all">
