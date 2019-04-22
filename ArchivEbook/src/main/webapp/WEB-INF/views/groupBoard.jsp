@@ -58,7 +58,7 @@ body {
 	padding: 30 30 30 30;
 	background-color: #f6f6f6;
 }
-#replytext {
+.replytext {
 	overflow:hidden;
 	background-color:#FFF;
 	color:#33333;
@@ -153,13 +153,13 @@ body {
 	width: 100;
 }
 
-#flip {
+.flip {
   padding: 5px;
   text-align: center;
   background-color: #007fff;
   color: white;
 }
-#panel {
+.panel {
   padding: 5px;
   text-align: center;
   background-color: #f6f6f6;
@@ -377,29 +377,87 @@ $(document).ready(function(){
 	  $('#title').focus();
 	    $('#text').autosize();
 	});
+	
+function writeForm(){
+	var title_board = $('#title').val();
+	var content_board = $('#text').val();
+	if(title_board.length < 3 || title_board.length > 21){
+		alert('제목을 4글자 이상 20글자 이하로 써주세요.');
+		return;
+	}
+	if(content_board.length < 3 || title_board.length > 500){
+		alert('제목을 4글자 이상 300글자 이하로 써주세요.');
+		return;
+	}
+	$('#paper').submit();
+	
+}
 </script>
 <!-- ///////////////////글쓰기 js임////////////// -->
 <div class="feedall">
 <!-- /////////////////////////////////글쓰기이므!!!!!!!!!!!!!/////////////////////////// -->
 
-<c:if test="${loginId != null}">
+<c:if test="${loginId != null }">
+<c:forEach items="${member}" var="mem">
+<c:if test="${mem.id.equals(loginId)}">
 <div id="wrapper">
-	<form id="paper" method="get" action="" style="width: 800px">
+	<form id="paper" method="post" action="write" style="width: 800px">
 		<div id="margin">Title: <input id="title" type="text" name="title" style="border-radius:0px;"></div>
-		<textarea placeholder="Enter something funny." id="text" name="text" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; width: 800px;"></textarea>  
-		<a class="btn-default" href=""><i class="flaticon-shop"></i>send</a>
+		<textarea placeholder="Enter something funny." id="text" name="content" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; width: 800px;"></textarea>  
+		<a id="sendBoard" class="btn-default" href="javascript:writeForm()"><i class="flaticon-shop"></i>send</a>
 	</form>
 </div>
+</c:if>
+</c:forEach>
 </c:if>
 <!-- /////////////////////////////////글쓰기끝!!!!!!!!!!!!/////////////////////////// -->
 
 <!-- //////////////////그룹 글 보여주기욤//////////////// -->
 <script> 
 $(document).ready(function(){
-  $("#flip").click(function(){
-    $("#panel").slideToggle("slow");
+  $(".flip").click(function(event){
+	  var e = $(event.target).attr('id');
+	  var i = 'panel'+e;
+    $('#'+i).slideToggle("slow");
   });
 });
+
+function updateBoard(num){
+	$.ajax({
+		url : 'groupUpdate'
+		, type : 'get'
+		, data : {bnum_group : num}
+		, dataType : 'json'
+		, success : function(e){
+			$('#title').val(e.title);
+			$('#text').val(e.content);
+			$('#sendBoard').attr('href','javascript:updateBoard_send('+num+')');
+			$('#title').focus();
+		}
+	});
+}
+
+function updateBoard_send(num){
+	var title_board = $('#title').val();
+	var content_board = $('#text').val();
+	if(title_board.length < 3 || title_board.length > 21){
+		alert('제목을 4글자 이상 20글자 이하로 써주세요.');
+		return;
+	}
+	if(content_board.length < 3 || title_board.length > 500){
+		alert('제목을 4글자 이상 300글자 이하로 써주세요.');
+		return;
+	}
+	$.ajax({
+		url : 'groupUpdate'
+		, type : 'post'
+		, data : {title : title_board, content : content_board, bnum_group : num}
+		, success : function(){
+			alert('글이 수정되었습니다.');
+			location.href = "";
+		}
+	})
+}
 </script>
 <!-- //////////////////그룹 글 보여주기욤//////////////// -->
 
@@ -407,14 +465,17 @@ $(document).ready(function(){
 
 
 
+  <c:forEach begin="0" end="${boardList.size()-1}" var="i">
 <div class="item" style="margin: 20 0 20 0">
   <div class="image" style="margin: 0 20 0 0">
     <div style="width: 120">
-      <table><tr><td align="center">
+      
+      <table>
+      <tr><td align="center">
       <img src="resources/img/ps.png" width="80"/>
       </td></tr>
       <tr><td align="center">
-      <span><b>닉네임임다용용</b></span>
+      <span><b>${boardList[i].nickname}</b></span>
       </td></tr></table>
     </div>
   </div>
@@ -422,34 +483,64 @@ $(document).ready(function(){
     <div>
       <table><tr><td style="width: 650px">
       <table style="width: 650px"><tr>
-      <td><h3>글 제엥에ㅔㅇ ㅇ목</h3></td>
-      <td class="writedate">1995-03-25</td>
-      <td><td class="boardUpdate" width="20"><a href=""><img alt="" src="resources/img/penpen.png" width="15"></a></td>
-      <td><td class="boardDel" width="20"><a href=""><img alt="" src="resources/img/xxxx.png" width="15"></a></td>
+      <td><h3>${boardList[i].title }</h3></td>
+      <td class="writedate">${boardList[i].inputdate }</td>
+      <td><td class="boardUpdate" width="20">
+      <c:if test="${boardList[i].id.equals(loginId)}">
+      <a href="javascript:updateBoard(${boardList[i].bnum_group })"><img alt="" src="resources/img/penpen.png" width="15"></a>
+      </c:if>
+      </td><!-- 수정 -->
+      <td><td class="boardDel" width="20">
+      <c:if test="${boardList[i].id.equals(loginId)}">
+      <a href="groupDelete?bnum_group=${boardList[i].bnum_group }"><img alt="" src="resources/img/xxxx.png" width="15"></a>
+      </c:if>
+      </td><!-- 삭제 -->
       </tr></table>
       <p style="width: 650">
-      	내내애애애ㅐㅐㅐㅐ애애애애애앵ㅇㅇ애애애애애애애앵요kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk요ㅛ용ㅇㅇㅇㅇ요요ㅛㅇ요요요요용 ㄱ르 내요애근ㄹ내뇽ㅇ 그랜ㅇ리너리너글내용잉ㅇ이이이잉잉글내용ㅇ요요용ㅇ용 
+      	 ${boardList[i].content }
       </p>
-      <div id="flip">Click see all comments</div>
-      <div id="panel">
+      <div class="flip" id="${i}">Click see all comments</div>
+      <div id="panel${i}" class="panel">
+      	<c:forEach items="${replylist }" var="listRE">
+      	<c:if test="${boardList[i].bnum_group == listRE.bnum_group}">
       	<table style="margin: 10"><tr><td width="130" valign="top">
-      	<b>닉네임임다용용</b>
+      	<b>${listRE.nickname}</b>
       	</td><td width="500">
-      	댓글 내용입ㅂ비비비ㅣ빕fffffffㅇ날니ㅓ라ㅣ너라ㅣㄷㄷ댜첯푸타ㅣㅜ파터ㅣㅏ너이ㅏ러니ㅏㅓ리ㅏㅓㅏㅣ풔ㅜㄴ율뉴려쥬다ㅠㅏ퓨타ㅓ퓨커ㅏㅠ퍼ㅏㅠ나ㅓㄷ자ㅗ가ㅓsgfbcvb비당
+		${listRE.content}
       	</td>
-      	<td class="reDel" width="20"><a href=""><img alt="" src="resources/img/xxxx.png" width="15"></a></td></tr></table>
+      	<td class="reDel" width="20">
+      	<c:if test="${listRE.id == loginId }">
+      	<a href="groupReplyDelete?rnum_group=${listRE.rnum_group}">
+      	<img alt="" src="resources/img/xxxx.png" width="15"></a>
+      	</c:if>
+      	</td></tr></table>
+      	
+      	</c:if>
+      	</c:forEach>
       </div>
-      <form id="" method="" action="" style="margin-top: 20">
-		<textarea placeholder="Comments.." id="replytext" name="replytext" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 50px; width: 650px;"></textarea>  
-		<a class="btn-default" href=""></i>comments</a>
+      <form id="reply_form${i}" method="POST" action="replyWrite" style="margin-top: 20">
+      	<input type="hidden" name="bnum_group" value="${boardList[i].bnum_group}">
+		<textarea placeholder="Comments.." id="replytext${i}" class="replytext" name="content" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 50px; width: 650px;"></textarea>  
+		<a class="btn-default" href="javascript:reply_submit(${i})"></i>comments</a>
 	  </form>
       </td></tr></table>
+     
     </div>
   </div>
+  <br>
 </div>
+  </c:forEach>
 </div>
-
-
+<script type="text/javascript">
+function reply_submit(num){
+	var re = $('#replytext'+num).val();
+	if(re.length < 1 || re.length > 300){
+		alert('댓글은 1글자 이상 300글자 미만으로 입력해  주세요.');
+		return;
+	}
+	$('#reply_form'+num).submit();
+}
+</script>
 
 
 </body>

@@ -1,6 +1,7 @@
 package global.sesoc.archive.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,83 +43,34 @@ public class GroupController {
 		= new PageNavigator(GroupPerPage, pagePerGroup, page, total);
 		
 		ArrayList<CommunityVO> list = null;
-		list = dao.groupList(pageNavigator.getStartRecord(), pageNavigator.getCountPerPage());
-		logger.debug("{}",list);
-		String id = (String) session.getAttribute("loginId");
-		CommunityVO vo = null;
-		ArrayList<CommunityVO> vo2 = null;
-		
-		if(id != null && id.equals("")){
-			vo = dao.searchGm(id);
-			model.addAttribute("gm", vo);
-			vo2 = dao.getMember(id);
-		}
-
-		if (vo != null) {
-			session.setAttribute("groupname", vo.getGroupname());
-		}
-
-		for (int i = 0; i < list.size(); i++) {
-			if (vo2 != null) {
-				for (int j = 0; j < vo2.size(); j++) {
-					if (list.get(i).getGroupnum() == vo2.get(j).getGroupnum()) {
-
-						list.get(i).setNickname("O");
-
-					}
-				}
-			}
-		}
+		list = dao.groupList(pageNavigator.getStartRecord(), pageNavigator.getCountPerPage()); //그룹 리스트
 		session.setAttribute("navi3", pageNavigator);
 		model.addAttribute("list_group", list);
 
 		return "groupList";
 	}
 
-	@RequestMapping(value = "groupBoard", method = RequestMethod.GET)
-	public String groupBoard(int groupnum, HttpSession session, Model model) {
-		ArrayList<GroupBoardVO> boardList = null;
-		boardList = dao.groupBoard(groupnum);
-		model.addAttribute("boardList", boardList);
-		String id = (String) session.getAttribute("loginId");
-		ArrayList<CommunityVO> vo = null;
-		vo = dao.getMember(id);
-		if (vo != null) {
-
-			for (int i = 0; i < vo.size(); i++) {
-				if (vo.get(i).getGroupnum() == groupnum) {
-					model.addAttribute("loginGroupNum", vo);
-				}
-			}
+	@ResponseBody
+	@RequestMapping(value="checkJoin", method=RequestMethod.GET)
+	public String checkJoin(HttpSession session, int groupnum){
+		int result = 0;
+		String id = (String)session.getAttribute("loginId");
+		if(id == null || id.isEmpty()){
+			return result+"";
 		}
-		session.setAttribute("groupnum", groupnum);
-		
-		return "groupBoard";
-	}
-
-	@RequestMapping(value = "groupBoardRead", method = RequestMethod.GET)
-	public String groupBoardRead(int bnum_group, HttpSession session, Model model) {
-
-		GroupBoardVO result = null;
-		result = dao.groupBoardRead(bnum_group);
-		if (result != null) {
-			model.addAttribute("boardId", result.getId());
-			model.addAttribute("result", result);
-		}
-
-		ArrayList<GroupReplyVO> replylist = dao.groupReplyList(bnum_group);
-		if (replylist != null) {
-			model.addAttribute("replylist", replylist);
-		}
-
-		return "groupBoardRead";
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("groupnum", groupnum);
+		result = dao.checkJoin(map);
+		logger.debug("???"+result);
+		return ""+result; 
 	}
 
 	@RequestMapping(value = "makeGroup", method = RequestMethod.GET)
 	public String makeGroupForm(HttpSession session, Model model) {
 		return "makeGroupForm";
 	}
-
+	
 	@RequestMapping(value = "makeGroup", method = RequestMethod.POST)
 	public String makeGroup(CommunityVO community, HttpSession session, Model model) {
 		logger.debug("{}",community);
@@ -130,12 +82,12 @@ public class GroupController {
 		}
 		community.setId(id);
 		community.setNickname(nickname);
-
-		int result = 0;
-		result = dao.makeGroup(community);
-		int res = 0;
-		res = dao.inputGu(community);
-
+		
+		dao.inputGu(community);
+		int group_num = dao.getGroupnum(community);
+		community.setGroupnum(group_num);
+		dao.makeGroup(community);
+		
 		return "redirect:groupList";
 	}
 	
@@ -147,49 +99,63 @@ public class GroupController {
 		result = dao.checkMaster(id);
 		return ""+result;
 	}
-
+	
+	@ResponseBody
 	@RequestMapping(value = "joinGroup", method = RequestMethod.GET)
-	public String joinGroupForm(CommunityVO community, int groupnum, HttpSession session, Model model) {
-
+	public String joinGroupForm(int groupnum, HttpSession session, Model model) {
+		CommunityVO community = new CommunityVO();
 		String id = (String) session.getAttribute("loginId");
 		String nickname = (String) session.getAttribute("loginNickname");
 		String groupname = dao.groupName(groupnum);
-
+		String intro = dao.getGroupintro(groupnum);
+		
+		community.setGroupintroduce(intro);
 		community.setId(id);
 		community.setNickname(nickname);
 		community.setGroupnum(groupnum);
 		community.setGroupname(groupname);
-
+		logger.debug("???{}", community);
 		int result = 0;
 		result = dao.joinGroup(community);
-
-		return "redirect:groupList";
+		
+		return ""+result;
 	}
-
-	@RequestMapping(value = "write", method = RequestMethod.GET)
-	public String groupWriteForm(HttpSession session, Model model) {
-		return "groupWriteForm";
+	
+	
+	@RequestMapping(value = "groupBoard", method = RequestMethod.GET)
+	public String groupBoard(int groupnum, HttpSession session, Model model) {
+		ArrayList<GroupBoardVO> boardList = null;
+		boardList = dao.groupBoard(groupnum);
+		ArrayList<CommunityVO> member = dao.getMember_group(groupnum);
+		model.addAttribute("member", member);
+		model.addAttribute("boardList", boardList);
+		session.setAttribute("groupnum", groupnum);
+		///수정
+		ArrayList<GroupReplyVO> replylist = dao.groupReplyList(groupnum);
+		model.addAttribute("replylist", replylist);
+		return "groupBoard";
 	}
-
+	
+	
 	@RequestMapping(value = "write", method = RequestMethod.POST)
 	public String write(GroupBoardVO board, HttpSession session, Model model) {
 		String id = (String) session.getAttribute("loginId");
-
+		
 		int groupnum = (int) session.getAttribute("groupnum");
-
+		
 		String nickname = (String) session.getAttribute("loginNickname");
-
+		
 		String groupname = dao.groupName(groupnum);
 		board.setId(id);
 		board.setGroupnum(groupnum);
 		board.setGroupname(groupname);
 		board.setNickname(nickname);
-
+		
 		int result = 0;
 		result = dao.write(board);
-		return "redirect:groupBoard?groupnum=" + groupnum;
+		return "redirect:groupBoard?groupnum="+groupnum;
 	}
-
+	
 	@RequestMapping(value = "groupDelete", method = RequestMethod.GET)
 	public String groupDelete(int bnum_group, HttpSession session) {
 		String id = (String) session.getAttribute("loginId");
@@ -200,55 +166,45 @@ public class GroupController {
 		int result = dao.groupDelete(board);
 		return "redirect:groupBoard?groupnum=" + groupnum;
 	}
-
+	@ResponseBody
 	@RequestMapping(value = "groupUpdate", method = RequestMethod.GET)
-	public String groupUpdateForm(int bnum_group, Model model) {
-		model.addAttribute("updateBoard", dao.groupBoardRead(bnum_group));
-		return "groupUpdateForm";
+	public GroupBoardVO groupUpdateForm(int bnum_group, Model model) {
+		GroupBoardVO result = null;
+		result = dao.groupBoardRead(bnum_group);
+		return result;
 	}
-
+	@ResponseBody
 	@RequestMapping(value = "groupUpdate", method = RequestMethod.POST)
-	public String groupUpdate(GroupBoardVO board, HttpSession session) {
+	public void groupUpdate(GroupBoardVO board, HttpSession session) {
 		String id = (String) session.getAttribute("loginId");
-		int groupnum = (int) session.getAttribute("groupnum");
 		board.setId(id);
 		int result = dao.groupUpdate(board);
-		return "redirect:groupBoard?groupnum=" + groupnum;
 	}
-
 	@RequestMapping(value = "replyWrite", method = RequestMethod.POST)
 	public String replyWrite(GroupReplyVO reply, int bnum_group, Model model, HttpSession session) {
 		int groupnum = dao.searchGn(bnum_group);
-		String groupname = dao.groupName(groupnum);
 		String id = (String) session.getAttribute("loginId");
 		String nickname = (String) session.getAttribute("loginNickname");
 		reply.setGroupnum(groupnum);
 		reply.setId(id);
 		reply.setNickname(nickname);
-
+		
 		int result = dao.replyWrite(reply);
-		if (result == 0) {
-			return "redirect:groupBoard?groupnum=" + groupnum;
-		} else {
-			return "redirect:groupBoardRead?bnum_group=" + reply.getBnum_group();
-		}
+		return "redirect:groupBoard?groupnum=" + groupnum;
 	}
-
 	@RequestMapping(value = "groupReplyDelete", method = RequestMethod.GET)
 	public String groupReplyDelete(int rnum_group, HttpSession session) {
 		
 		String id = (String) session.getAttribute("loginId");
-		GroupReplyVO vo = null;
-		vo.setId(id);
-		vo.setRnum_group(rnum_group);
-		int bnum_group = dao.searchBn(vo);
+		int groupnum = (int) session.getAttribute("groupnum");
 		
 		GroupReplyVO reply = new GroupReplyVO();
 		reply.setId(id);
-		reply.setBnum_group(bnum_group);
 		reply.setRnum_group(rnum_group);
 		
 		int result = dao.groupReplyDelete(reply);
-		return "redirect:groupBoardRead?bnum_group=" + bnum_group;
+		return "redirect:groupBoard?groupnum=" + groupnum;
 	}
+////////////////check
+
 }

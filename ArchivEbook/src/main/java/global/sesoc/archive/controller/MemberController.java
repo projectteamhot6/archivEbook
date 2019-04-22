@@ -111,10 +111,7 @@ public class MemberController {
 		//세션 정보 삭제
 		logger.debug("logout");
 		session.invalidate();
-/*		
-		session.removeAttribute("loginId");
-		session.removeAttribute("loginName");
-*/
+
 		return "redirect:/";
 	}
 	
@@ -169,7 +166,7 @@ public class MemberController {
 	@RequestMapping (value="update", method=RequestMethod.POST)
 	public String update(UserinfoVO vo, HttpSession session) {
 		logger.debug("vo:{}", vo);			
-
+		dao.updateinfo(vo);
 		return "redirect:/";
 	}
 	

@@ -6,38 +6,26 @@
 <mapper namespace="global.sesoc.archive.dao.GroupMapper">
 	<!-- 그룹 리스트 -->
 	<select id="groupList" resultType="community">
-		select * from community 
-		where group_master = 1 
+		select 
+			c.id
+			, c.groupname
+			, c.groupintroduce
+			, c.nickname 
+			, c.groupnum
+		from 
+			community c 
+			, group_user g 
+		where 
+			c.GROUPNUM = g.GROUPNUM 
+			and 
+			c.GROUP_MASTER = 1
 	</select>
 	
 	<!-- 그룹에서 아이디로 가입한 그룹번호 가져오기  -->
 	<select id="getMember" parameterType="String" resultType="community">
-		select groupnum from community
+		select * from community
 		where
 		id = #{id}
-	</select>
-	
-	<!-- 그룹장 찾기 -->
-	<select id="searchGm" parameterType="String" resultType="community">
-		select * from community 
-		where id = #{id} and group_master = 1
-	</select> 
-	
-	<!-- 그룹 게시판 -->
-	<select id="groupBoard" parameterType="int" resultType="groupboard">
-		select * from
-		groupboard
-		where
-		groupnum = #{groupnum}
-		order by bnum_group desc
-	</select>
-	
-	<!-- 그룹 게시판 글 읽기 -->
-	<select id="groupBoardRead" parameterType="int" resultType="groupboard">
-		select * from
-		groupboard
-		where
-		bnum_group = #{bnum_group}
 	</select>
 	
 	<!-- 그룹 생성 -->
@@ -53,7 +41,7 @@
 		values(
 			#{id}
 			, #{nickname}
-			, community_seq.nextval
+			, #{groupnum}
 			, 1
 			, #{groupname}
 			, #{groupintroduce}
@@ -68,11 +56,120 @@
 			, groupintroduce
 		)
 		values(
-			#{groupnum}
+			group_user_seq.nextval
 			, #{groupname}
 			, #{groupintroduce}	
 		)
 	</insert>
+	
+	<!-- 그룹 가입 -->
+	<insert id="joinGroup" parameterType="community">
+		insert into community(
+			id
+			, nickname
+			, groupnum
+			, groupname
+			, groupintroduce
+		)
+		values(
+			#{id}
+			, #{nickname}
+			, #{groupnum}
+			, #{groupname}
+			, #{groupintroduce}
+		)
+	</insert>
+	
+	<!-- 그룹 이름 가져오기 -->
+	<select id="groupName" parameterType="int" resultType="String">
+		select groupname from group_user
+		where
+		groupnum = #{groupnum}
+	</select>
+	
+	<select id="getTotalList" resultType="int">
+		select 
+			count(*)
+		from
+			group_user
+	</select>
+	
+		
+	<select id="getListuser" parameterType="String" resultType="community">
+		select
+			*
+		from
+			community
+		where
+			id = #{id}
+		order by
+			group_master desc
+	</select>
+	
+	<select id="getMaster" parameterType="int" resultType="community">
+		select
+			*
+		from
+			community
+		where
+			group_master = 1
+			and
+			groupnum = #{num}
+	</select>
+	
+	<select id="getGroupnum" parameterType="int" resultType="community">
+		select * from group_user where groupnum = #{groupnum}
+	</select>
+	<select id="getGroupnum_2" parameterType="community" resultType="community">
+		select * from group_user where groupnmae = #{groupname} and groupintroduce = #{groupintroduce}
+	</select>
+	
+	<select id="checkMaster" parameterType="String" resultType="int">
+		select 
+			count(*) 
+		from 
+			community 
+		where 
+			id = #{id} 
+			and 
+			group_master = 1
+	</select>
+	
+	<select id="checkJoin" parameterType="map" resultType="int">
+		select count(*) from community where id = #{id} and groupnum = #{groupnum}
+	</select>
+	
+	<!-- 그룹 게시판 -->
+	<select id="groupBoard" parameterType="int" resultType="groupboard">
+		select  
+			id
+			, nickname
+			, to_char(inputdate,'yyyy/mm/dd') as inputdate
+			, title
+			, content
+			, bnum_group
+		from
+		groupboard
+		where
+		groupnum = #{groupnum}
+		order by bnum_group desc
+	</select>
+	
+	<select id="getMember_group" parameterType="int" resultType="community">
+		select
+			*
+		from
+			community
+		where
+			groupnum = #{num}
+	</select>
+	
+	<!-- 리플 목록 -->
+	<select id="groupReplyList" parameterType="int" resultType="groupreply">
+		select * from groupreply
+		where groupnum = #{groupnum}
+		order by rnum_group desc
+	</select>
 	
 	<!-- 그룹 글 쓰기 -->
 	<insert id="write" parameterType="groupboard">
@@ -96,29 +193,6 @@
 		)
 	</insert>
 	
-	<!-- 그룹 가입 -->
-	<insert id="joinGroup" parameterType="community">
-		insert into community(
-			id
-			, nickname
-			, groupnum
-			, groupname
-		)
-		values(
-			#{id}
-			, #{nickname}
-			, #{groupnum}
-			, #{groupname}
-		)
-	</insert>
-	
-	<!-- 그룹 이름 가져오기 -->
-	<select id="groupName" parameterType="int" resultType="String">
-		select groupname from group_user
-		where
-		groupnum = #{groupnum}
-	</select>
-	
 	<!-- 게시글 삭제 -->
 	<delete id="groupDelete" parameterType="groupboard">
 		delete from groupboard
@@ -127,6 +201,14 @@
 		and
 		bnum_group = #{bnum_group}
 	</delete>
+	
+		<!-- 그룹 게시판 글 읽기 -->
+	<select id="groupBoardRead" parameterType="int" resultType="groupboard">
+		select * from
+		groupboard
+		where
+		bnum_group = #{bnum_group}
+	</select>
 	
 	<!-- 게시글 수정 -->
 	<update id="groupUpdate" parameterType="groupboard">
@@ -139,15 +221,6 @@
 		and bnum_group = #{bnum_group}
 	</update>
 	
-	<!-- 전체 글 갯수 -->
-	<select id="getTotal" parameterType="int" resultType="int">
-		select count(*) from groupboard where groupnum = #{groupnum} 
-	</select>
-	
-	<!-- 페이지 네비게이터 -->
-	<select id="boardSelect" resultType="groupboard">
-		select * from groupboard
-	</select>
 	
 	<!-- 그룹번호 찾기 -->
 	<select id="searchGn" parameterType="int" resultType="int">
@@ -173,11 +246,12 @@
 		)
 	</insert>
 	
-	<!-- 리플 목록 -->
-	<select id="groupReplyList" parameterType="int" resultType="groupreply">
-		select * from groupreply
-		where bnum_group = #{bnum_group}
-		order by rnum_group desc
+	<!-- 리플 번호 찾기 -->
+	<select id="searchBn" parameterType="groupreply" resultType="int">
+		select bnum_group from groupreply
+		where
+		id = #{id}
+		and rnum_group = #{rnum_group}
 	</select>
 	
 	<!-- 리플 삭제 -->
@@ -188,65 +262,5 @@
 		and
 		rnum_group = #{rnum_group}
 	</delete>
-	
-	<!-- 리플 번호 찾기 -->
-	<select id="searchRn" parameterType="String" resultType="int">
-		select rnum_group from groupreply
-		where
-		id = #{id}
-		and bnum_group = #{bnum_group}
-	</select>
-	
-	<select id="getTotalList" resultType="int">
-		select 
-			count(*)
-		from
-			group_user
-	</select>
-	<select id="searchBn" parameterType="groupreply" resultType="int">
-	select 
-		bnum_group
-	from	
-		groupreply
-	where
-		id = #{id}
-		and
-		rnum_group = #{rnum_group}
-	</select>
-	
-	<select id="getListuser" parameterType="String" resultType="community">
-		select
-			*
-		from
-			community
-		where
-			id = #{id}
-		order by
-			group_master desc
-	</select>
-	<select id="getMaster" parameterType="int" resultType="community">
-		select
-			*
-		from
-			community
-		where
-			group_master = 1
-			and
-			groupnum = #{num}
-	</select>
-	<!-- groupname으로 그룹번호 받아오기 -->
-	<select id="getGroupNum" parameterType="String" resultType="int">
-		select groupnum from group_user where groupname = #{groupname}
-	</select>
-	
-	<select id="checkMaster" parameterType="String" resultType="int">
-		select 
-			count(*) 
-		from 
-			community 
-		where 
-			id = #{id} 
-			and 
-			group_master = 1
-	</select>
+
 </mapper>

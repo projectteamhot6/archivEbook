@@ -53,7 +53,18 @@
 	
 	<!-- 정보 수정 처리 -->
    <update id="updateinfo" parameterType="userinfo">
-   
+	update 
+		userinfo
+	set
+		gender = #{gender}
+		<if test="password != null and password != ''">
+		, password = #{password}
+		</if>
+		<if test="email != null and email != ''">
+		, email = #{email}
+		</if>
+	where
+		id = #{id}
    </update>
    
    <insert id="setWant" parameterType="buy_user">

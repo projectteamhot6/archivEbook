@@ -356,8 +356,8 @@ $(function(){
 				<p style="font-size: 18px">${list.groupintroduce}</p>
 				</td>
 				<td rowspan="2" align="center"><!-- 열3: 가입버튼 -->
-				<c:if test="${list.nickname != 'O' || loginId != null}">
-				<a class="groupjoin-btn btn-default" href="joinGroup?groupnum=${list.groupnum }"><i class="flaticon-shop"></i>가입</a>
+				<c:if test="${loginId != null}">
+				<a class="groupjoin-btn btn-default" href="javascript:joinGroup(${list.groupnum })"><i class="flaticon-shop"></i>가입</a>
 				</c:if>
 				</td>
 			</tr>
@@ -372,7 +372,7 @@ $(function(){
 			</c:forEach>
 	</table>
 	<div class="buttonPage_Make">
-	<a class="pageButton" href="groupList?page=${navi3.currentPage - navi.pagePerGroup}">◁◁</a>&nbsp;&nbsp;
+	<a class="pageButton" href="groupList?page=${navi3.currentPage - navi3.pagePerGroup}">◁◁</a>&nbsp;&nbsp;
 	<a class="pageButton" href="groupList?page=${navi3.currentPage - 1}">◀</a>&nbsp;&nbsp;
 	<c:forEach begin="${navi3.startPageGroup }" end="${navi3.endPageGroup }" var="i">
 		<c:if test="${navi3.currentPage == i}">[</c:if>
@@ -418,6 +418,34 @@ function makeGroup() {
 			}
 		}
 	});
+}
+
+function joinGroup(num){
+	$.ajax({
+		url : 'checkJoin'
+		, type : 'get'
+		, data : {groupnum : num}
+		, dataType : 'text'
+		, success : function(e){
+			
+			if(e == 0){				
+				$.ajax({
+					url : 'joinGroup'
+					, type : 'get'
+					, data : {groupnum : num}
+					, dataType : 'text'
+					, success : function(e){
+						if(e == 1){
+							alert('가입되었습니다.');
+						}
+					}
+				})
+			}
+			else{
+				alert('이미 가입되어있습니다.');
+			}
+		}
+	})
 }
 
 

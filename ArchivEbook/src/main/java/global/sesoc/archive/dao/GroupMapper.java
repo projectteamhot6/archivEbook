@@ -1,6 +1,7 @@
 package global.sesoc.archive.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 
@@ -13,8 +14,6 @@ public interface GroupMapper {
 	// 그룹 리스트
 	public ArrayList<CommunityVO> groupList(RowBounds rb);
 
-	// 그룹장 찾기
-	public CommunityVO searchGm(String id);
 
 	// 그룹 게시판
 	public ArrayList<GroupBoardVO> groupBoard(int groupnum);
@@ -46,11 +45,6 @@ public interface GroupMapper {
 	// 게시글 수정
 	public int groupUpdate(GroupBoardVO board);
 
-	// 전체 글 갯수
-	public int getTotal(int groupnum);
-
-	// 페이지 네비게이터
-	public ArrayList<GroupBoardVO> boardSelect(RowBounds rb);
 
 	// 그룹번호 찾기
 	public int searchGn(int bnum_group);
@@ -64,8 +58,6 @@ public interface GroupMapper {
 	// 리플 삭제
 	public int groupReplyDelete(GroupReplyVO reply);
 	
-	// 리플 번호 찾기 
-	public int searchRn(String id, int bnum_group);
 
 	public int getTotalList();
 
@@ -75,9 +67,16 @@ public interface GroupMapper {
 
 	public CommunityVO getMaster(int groupnum);
 	
-	// groupname으로 그룹번호 받아오기 
-		public int getGroupNum(String groupname);
 
 		public int checkMaster(String id);
+
+		public CommunityVO getGroupnum(int groupnum);
+
+		public int checkJoin(HashMap<String, Object> map);
+
+		public CommunityVO getGroupnum_2(CommunityVO community);
+
+
+		public ArrayList<CommunityVO> getMember_group(int groupnum);
 
 }

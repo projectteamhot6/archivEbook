@@ -33,7 +33,6 @@ public class MemberDAO {
 	public int updateinfo(UserinfoVO vo) {
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);		
 		mapper.updateinfo(vo);		
-		
 		return 0;
 	}
 

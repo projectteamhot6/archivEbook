@@ -1,6 +1,7 @@
 package global.sesoc.archive.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -31,16 +32,6 @@ public class GroupDAO {
 		return list;
 	}
 
-	public CommunityVO searchGm(String id) {
-		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
-		CommunityVO vo = null;
-		try {
-			vo = mapper.searchGm(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return vo;
-	}
 
 	public ArrayList<GroupBoardVO> groupBoard(int groupnum) {
 		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
@@ -227,21 +218,43 @@ public class GroupDAO {
 		result = mapper.getMaster(groupnum);
 		return result;
 	}
-	public int getGroupNum(String groupname) {
-		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
-		int groupnum = 0;
-		try {
-			groupnum = mapper.getGroupNum(groupname);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return groupnum;
-	}
 
 	public int checkMaster(String id) {
 		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
 		int result = 0;
 		result = mapper.checkMaster(id);
+		return result;
+	}
+
+	public int getGroupnum(CommunityVO community) {
+		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
+		int result = 0;
+		CommunityVO result2 = mapper. getGroupnum_2(community);
+		result = result2.getGroupnum();
+		return result;
+	}
+
+	public String getGroupintro(int groupnum) {
+		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
+		String result = null;
+		CommunityVO result2 = mapper. getGroupnum(groupnum);
+		result = result2.getGroupintroduce();
+		
+		return result;
+	}
+
+	public int checkJoin(HashMap<String, Object> map) {
+		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
+		int result = 0;
+		result = mapper.checkJoin(map);
+		return result;
+	}
+
+
+	public ArrayList<CommunityVO> getMember_group(int groupnum) {
+		GroupMapper mapper = sqlSession.getMapper(GroupMapper.class);
+		ArrayList<CommunityVO> result = null;
+		result = mapper.getMember_group(groupnum);
 		return result;
 	}
 
