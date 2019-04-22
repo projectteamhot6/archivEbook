@@ -99,9 +99,6 @@ table.makeFormTable {
 					<th class="searchbtn1">
 						<a style="margin:0 5 0 5;margin-left: 5px;margin-right: 5px;" href="javascript:searchBook()"><img alt="" src="resources/img/iconfinder_11_Search_106236.png" width="20"></a>		
 					</th>
-					<th class="searchbtn2">
-						<a style="margin:0 5 0 5;margin-left: 5px;margin-right: 5px;" href=""><img alt="" src="resources/img/iconfinder_microphone_1608550.png" width="20"></a>
-					</th>
 				</tr>
 				</table>
 			</form>

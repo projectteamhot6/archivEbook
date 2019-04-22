@@ -196,7 +196,15 @@ textarea.reply_content, input.update_form {
   line-height: 18px;
   padding: 10px 22px;
 }
-
+.ub-logout {
+  width: 102px;
+}
+.ub-ullogout {
+  width: 102px;
+}
+#search {
+  margin-bottom: 16;
+}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -246,12 +254,11 @@ $(function(){
 </head>
 <body>
 
-
 <!-- ///////////////////////////////////헤더임///////////////////////////////////////// -->
 <div class="header" id="header">
 	<div class="headerIn">
 		<h1><a href="./">archive</a></h1>
-			<form id="search" action="searchList" method="get">
+			<form id="search" action="searchList" method="get" style="margin-bottom: 16px;">
 				<table class="searchbar">
 				<tr>
 					<th width="110px">
@@ -267,10 +274,7 @@ $(function(){
 					<th>
 						<input type="text" id="bookName" name="bookName" placeholder="search.."></th>
 					<th class="searchbtn1">
-						<a style="margin:0 5 0 5" href="javascript:searchBook()"><img alt="" src="resources/img/iconfinder_11_Search_106236.png" width="20"></a>		
-					</th>
-					<th class="searchbtn2">
-						<a style="margin:0 5 0 5" href=""><img alt="" src="resources/img/iconfinder_microphone_1608550.png" width="20"></a>
+						<a style="margin:0 5 0 5;margin-left: 5px;margin-right: 5px;" href="javascript:searchBook()"><img alt="" src="resources/img/iconfinder_11_Search_106236.png" width="20"></a>		
 					</th>
 				</tr>
 				</table>
@@ -304,11 +308,11 @@ $(function(){
 					</nav>
 				</c:if>
 				<c:if test="${loginId != null }">
-					<nav class="main-nav2" style="margin-right: 0px;width: 200;float: right;">
+					<nav class="main-nav2" style="margin-right: 0px;width: 200;float: right;width: 200px;">
 						<table><tr><td style="width: 88px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
-							<ul class="userBar">
+							<ul class="userBar ub-ullogout">
 								<li style="margin-left: 0px;">
-									<a href="logout" style="width:102; margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="ub-logout">Log out</a>
+									<a href="logout" style="margin-left: 0px;margin-right: 0px;padding-left: 16px;border-top-width: 0px;" class="ub-logout">Log out</a>
 								</li>
 							</ul>
 						</td><td style="width: 93px;padding-left: 0px;padding-bottom: 0px;padding-right: 0px;padding-top: 0px;">
