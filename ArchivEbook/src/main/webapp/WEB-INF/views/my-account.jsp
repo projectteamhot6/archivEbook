@@ -487,10 +487,104 @@ $(function(){
 				</form>
 		</section>
 		<section id="getReply" class="tab-panel">
-		가입한 그룹 리스트 가져오기<!-- 내가 만든 그룹이 있으면 가장 위로 -->
+		<table align="center" class="groupinfo">
+			<!-- 윗 공간 여백 주기 -->
+			<tr><td colspan="4"><p><br></p></td></tr>
+			<tr height="60" class="groupTable">
+				<td align="center"><p><b>GROUP</b></p></td>
+				<td align="center" colspan="2"><p><b>INFO</b></p></td>
+			</tr>
+			<!-- 행1 -->
+			<c:forEach var="list" items="${group_list_user}">
+			<tr height="50">
+				<td rowspan="2" align="center" width="200"><!-- 열1: 그룹이름 -->
+				<a href="groupBoard?groupnum=${list.groupnum}" class="groupEnter" >
+				<div id="app">
+					<p class="m-flip js-flip" style="font-size: 30px;">
+						<span class="m-flip_item">${list.groupname}</span>
+						<span class="m-flip_item">ENTER?</span>
+					</p>
+				</div>
+				</a>
+				</td>
+				<td rowspan="2"><!-- 공백 -->&nbsp;&nbsp;</td>
+				<td><!-- 열2: 그룹소개 -->
+				<p style="font-size: 18px">${list.groupintroduce}</p>
+				</td>
+			</tr>
+			<tr height="50">
+				<td height="50"><!-- 열2: 그룹장 id -->
+				<p style="color: #666"><b>Master &nbsp; </b>
+					<c:if test="${list.group_master == 1}">
+						${list.id }
+					</c:if>
+					<c:if test="${list.group_master != 1}">
+						<c:forEach var="i" items="${group_master}">
+							<c:if test="${list.groupname == i.groupname }">
+								${i.id}
+							</c:if>
+						</c:forEach>
+					</c:if>
+				</p>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" class="line"></td>
+			</tr>
+			</c:forEach>
+	</table>
 		</section>
 		<section id="rauchbier" class="tab-panel">
-		서평 불러오기
+		<c:choose>
+			<c:when test="${reply_list_user != null && reply_list_user.size() != 0}">
+				<div>
+					<table >
+						<tr>
+							<th> 책 제목 </th> <th> 출판 </th> <th> 내용 </th><th> 평점 </th><th>날짜</th>
+						</tr>
+						<c:forEach items="${reply_list_user}" var="list">
+							<tr>
+								<td>
+									${list.title}
+								</td>
+								<td>
+									${list.publisher }
+								</td>
+								<td>
+									${list.content }
+								</td>
+								<td>
+									${list.point }
+								</td>
+								<td>
+									${list.inputdate}
+								</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			<div class="buttonPage_Make" style="text-align: center">
+				<a class="pageButton" href="my-account?page=${navi2.currentPage - navi2.pagePerGroup}&check_navi2=1">◁◁</a>&nbsp;&nbsp;
+				<a class="pageButton" href="my-account?page=${navi2.currentPage - 1}&check_navi2=1">◀</a>&nbsp;&nbsp;
+				<c:forEach begin="${navi2.startPageGroup }" end="${navi2.endPageGroup }" var="i">
+					<c:if test="${navi2.currentPage == i}">[</c:if>
+						<a class="pageButton" href="my-account?page=${i}&check_navi2=1">${i}</a>
+					<c:if test="${navi2.currentPage == i}">]</c:if>
+				</c:forEach>
+					<a class="pageButton" href="my-account?page=${navi2.currentPage + 1}&check_navi2=1">▶</a>&nbsp;&nbsp;
+					<a class="pageButton" href="my-account?page=${navi2.currentPage + navi2.pagePerGroup}&check_navi2=1">▷▷</a>
+			</div>
+			</c:when>
+			<c:otherwise>
+			작성한 글이 없습니다.
+			<div style="margin: 30px">
+			 	<a class="cart-btn btn-default" href="book_reply">
+                	 <i class="flaticon-shop"></i>
+					서평을 작성하러 가시겠습니까?
+               	</a>
+             </div>
+			</c:otherwise>
+			</c:choose>
 	    </section>
 		<section id="dunkles" class="tab-panel">
 		<c:if test="${user_past.size() > 0}">

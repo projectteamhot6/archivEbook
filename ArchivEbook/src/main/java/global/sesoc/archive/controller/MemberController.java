@@ -130,11 +130,35 @@ public class MemberController {
 		
 		model.addAttribute("user_vo", vo);
 		
+		int total = 0;
+		total = replyDao.getMyTotal(id);
+		PageNavigator pageNavigator 
+		= new PageNavigator(countPerPage, pagePerGroup, page, total);
+		ArrayList<Reply_BookVO> list = null;
+		list = replyDao.getMyList(id, pageNavigator.getStartRecord(), pageNavigator.getCountPerPage());
+		session.setAttribute("navi2", pageNavigator);
+		model.addAttribute("reply_list_user", list);
 		
 		ArrayList<Buy_userVO> want = null;	//구매를 하면 찜목록에서 삭제 꼭 할 것!!!!!!
 		want = readerDao.getWant(id);
 		model.addAttribute("user_want", want);
 		model.addAttribute("check_navi2", check_navi2);
+		
+		ArrayList<CommunityVO> my_group = null;
+		ArrayList<CommunityVO> group_master = new ArrayList<>();
+		my_group = groupDao.getList_user(id);
+		model.addAttribute("group_list_user", my_group);
+		if(my_group != null){
+			for(int i = 0; i < my_group.size(); i++){
+				if(my_group.get(i).getGroup_master() == 0){
+					logger.debug("{}",my_group.get(i));
+					group_master.add(groupDao.getMaster(my_group.get(i).getGroupnum()));
+				}
+			}
+		}
+		logger.debug("{}",my_group);
+		logger.debug("{}",group_master);
+		model.addAttribute("group_master", group_master);
 		
 		return "my-account";
 	}

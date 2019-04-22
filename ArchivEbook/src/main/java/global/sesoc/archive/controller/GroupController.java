@@ -120,6 +120,7 @@ public class GroupController {
 
 	@RequestMapping(value = "makeGroup", method = RequestMethod.POST)
 	public String makeGroup(CommunityVO community, HttpSession session, Model model) {
+		logger.debug("{}",community);
 		String id = (String) session.getAttribute("loginId");
 		String nickname = (String) session.getAttribute("loginNickname");
 
