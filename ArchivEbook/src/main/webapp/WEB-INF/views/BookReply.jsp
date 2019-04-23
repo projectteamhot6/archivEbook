@@ -4,11 +4,10 @@
 <html>
 <head>
 <title>Book_Reply</title>
-<script type="text/javascript" src="resources/epub/js/libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/js/signupSignin.js"></script>
 <script type="text/javascript" src="resources/js/signin_up.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
-
 <style type="text/css">
 * {box-sizing: border-box;}
 
@@ -85,7 +84,8 @@ textarea.reply_content {
 <!-- ///////////////////////////////////헤더임///////////////////////////////////////// -->
 <div class="header" id="header">
 	<div class="headerIn">
-		<h1><a href="./">archive</a></h1>
+		<h1 style="left: 40;height: 100;width: 266px;height: 100px;">
+		<a href="./" style="margin-left: 40px;"><img alt="" src="resources/img/archivelogo22.png" height="100"></a></h1>
 			<form id="search" action="searchList" method="get" style="margin-bottom: 16px;">
 				<table class="searchbar">
 				<tr>
@@ -253,7 +253,18 @@ textarea.reply_content {
 <!-- /////////////////////////////////////검색 옵션 부분 js////////////////////////////////////////////////// -->
 <script src="resources/js/searchOption.js"></script>
 <!-- /////////////////////////////////////검색 옵션 부분 js////////////////////////////////////////////////// -->
-
+<script type="text/javascript">
+function searchBook(){
+	var bookName = document.getElementById('bookName');
+	
+	if(bookName.value.length < 1){
+		alert('검색할 내용을 입력하세요'); 
+		return;
+	}
+	
+	$('#search').submit();
+}
+</script>
 
 
 

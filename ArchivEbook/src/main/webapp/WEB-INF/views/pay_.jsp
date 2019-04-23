@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>${type}</title>
-<script type="text/javascript" src="resources/epub/js/libs/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 
 <style type="text/css">
 * {box-sizing: border-box;}
