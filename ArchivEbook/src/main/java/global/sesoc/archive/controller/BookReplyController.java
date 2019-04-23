@@ -156,7 +156,7 @@ public class BookReplyController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="reply_ajax_book", method=RequestMethod.POST)
+	@RequestMapping(value="reply_ajax_book", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
 	public void replyAjax(String title
 			, String publisher
 			, int point
@@ -179,7 +179,7 @@ public class BookReplyController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="checkTitle", method=RequestMethod.GET)
+	@RequestMapping(value="checkTitle", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public int checkTitle(String title, HttpSession session){
 		ArrayList<Buy_userVO> list = new ArrayList<>();
 		list = (ArrayList<Buy_userVO>)session.getAttribute("book_list_20190420");

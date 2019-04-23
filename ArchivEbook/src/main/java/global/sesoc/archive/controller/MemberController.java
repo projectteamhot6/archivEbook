@@ -171,7 +171,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="wantBook", method=RequestMethod.GET)
+	@RequestMapping(value="wantBook", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String setWant(String booknum, HttpSession session){
 		String id = (String)session.getAttribute("loginId");
 		String nickname = (String)session.getAttribute("loginNickname");
@@ -189,7 +189,7 @@ public class MemberController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="checkID", method=RequestMethod.GET)
+	@RequestMapping(value="checkID", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String checkID(String id){
 		logger.debug(id);
 		int result = 0;
@@ -197,7 +197,7 @@ public class MemberController {
 		return ""+result;
 	}
 	@ResponseBody
-	@RequestMapping(value="checkNICK", method=RequestMethod.GET)
+	@RequestMapping(value="checkNICK", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String checkNICK(String nick){
 		logger.debug(nick);
 		int result = 0;

@@ -121,7 +121,7 @@
 		select * from group_user where groupnum = #{groupnum}
 	</select>
 	<select id="getGroupnum_2" parameterType="community" resultType="community">
-		select * from group_user where groupnmae = #{groupname} and groupintroduce = #{groupintroduce}
+		select * from group_user where groupname = #{groupname} and groupintroduce = #{groupintroduce}
 	</select>
 	
 	<select id="checkMaster" parameterType="String" resultType="int">

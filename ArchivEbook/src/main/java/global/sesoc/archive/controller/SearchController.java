@@ -190,7 +190,7 @@ public class SearchController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/libList", method = RequestMethod.POST)
+	@RequestMapping(value = "/libList", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	public ArrayList<LivInfoVO> libList(String isbn) {
 	
 		//web에서 입력된 isbn값 확인

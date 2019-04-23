@@ -63,7 +63,7 @@ public class PayController {
 		return "pay_";
 	}
 	@ResponseBody
-	@RequestMapping(value="payment", method=RequestMethod.POST)
+	@RequestMapping(value="payment", method=RequestMethod.POST, produces="application/json;charset=UTF-8")
 	public void payPost(String type, String price, Model model, HttpSession session){
 		logger.debug("POST type : {}, price :{}", type, price);
 		String id = (String)session.getAttribute("loginId");

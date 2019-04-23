@@ -51,7 +51,7 @@ public class GroupController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value="checkJoin", method=RequestMethod.GET)
+	@RequestMapping(value="checkJoin", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String checkJoin(HttpSession session, int groupnum){
 		int result = 0;
 		String id = (String)session.getAttribute("loginId");
@@ -66,7 +66,7 @@ public class GroupController {
 		return ""+result; 
 	}
 
-	@RequestMapping(value = "makeGroup", method = RequestMethod.GET)
+	@RequestMapping(value = "makeGroup", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String makeGroupForm(HttpSession session, Model model) {
 		return "makeGroupForm";
 	}
@@ -92,7 +92,7 @@ public class GroupController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="checkMaster", method=RequestMethod.GET)
+	@RequestMapping(value="checkMaster", method=RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String checkMaster(HttpSession session){
 		int result = 0;
 		String id = (String)session.getAttribute("loginId");
@@ -101,7 +101,7 @@ public class GroupController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "joinGroup", method = RequestMethod.GET)
+	@RequestMapping(value = "joinGroup", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public String joinGroupForm(int groupnum, HttpSession session, Model model) {
 		CommunityVO community = new CommunityVO();
 		String id = (String) session.getAttribute("loginId");
@@ -167,14 +167,14 @@ public class GroupController {
 		return "redirect:groupBoard?groupnum=" + groupnum;
 	}
 	@ResponseBody
-	@RequestMapping(value = "groupUpdate", method = RequestMethod.GET)
+	@RequestMapping(value = "groupUpdate", method = RequestMethod.GET, produces="application/json;charset=UTF-8")
 	public GroupBoardVO groupUpdateForm(int bnum_group, Model model) {
 		GroupBoardVO result = null;
 		result = dao.groupBoardRead(bnum_group);
 		return result;
 	}
 	@ResponseBody
-	@RequestMapping(value = "groupUpdate", method = RequestMethod.POST)
+	@RequestMapping(value = "groupUpdate", method = RequestMethod.POST, produces="application/json;charset=UTF-8")
 	public void groupUpdate(GroupBoardVO board, HttpSession session) {
 		String id = (String) session.getAttribute("loginId");
 		board.setId(id);
