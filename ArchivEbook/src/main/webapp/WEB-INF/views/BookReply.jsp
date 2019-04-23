@@ -257,7 +257,7 @@ textarea.reply_content {
 
 
 <div>
-<div id="listBook" style="padding-top : 200px">
+<div id="listBook" style="top : 200px;position:relative;margin-left: 250px;margin-right: 250px;">
 <h2>This is where you leave a book review.</h2>
 <br>
 <input type="text" list="titles" name="title" value="" id="title" placeholder="Do you know the title of the book?" size="100">

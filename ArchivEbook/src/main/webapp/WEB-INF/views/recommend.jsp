@@ -75,13 +75,13 @@ body {
 
 .tabset > label:hover,
 .tabset > input:focus + label {
-  color: #06c;
+  color: #007fff;
 }
 
 .tabset > label:hover::after,
 .tabset > input:focus + label::after,
 .tabset > input:checked + label::after {
-  background: #06c;
+  background: #007fff;
 }
 
 .tabset > input:checked + label {
@@ -295,7 +295,7 @@ body {
 
 <div>
 <div id="listBook" style="padding-top : 200px">
-<div class="all">
+<div class="all" style="margin-left: 250px;margin-right: 250px;padding-left: 0px;padding-right: 0px;">
 <div class="tabset">
   <!-- Tab 1 -->
   <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
