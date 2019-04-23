@@ -70,6 +70,11 @@ table.makeFormTable {
 #search {
   margin-bottom: 16;
 }
+
+.btntable {
+  float: right;
+  margin-right: 40px;
+}
 </style>
 
 
@@ -80,7 +85,8 @@ table.makeFormTable {
 <!-- ///////////////////////////////////헤더임///////////////////////////////////////// -->
 <div class="header" id="header">
 	<div class="headerIn">
-		<h1 style="left: 40;"><a href="./"><img alt="" src="resources/img/archivelogo22.png" height="100"></a></h1>
+		<h1 style="left: 40;height: 100;width: 266px;height: 100px;">
+		<a href="./" style="margin-left: 40px;"><img alt="" src="resources/img/archivelogo22.png" height="100"></a></h1>
 			<form id="search" action="searchList" method="get" style="margin-bottom: 16px;">
 				<table class="searchbar">
 				<tr>
@@ -259,7 +265,7 @@ table.makeFormTable {
 	<form action="pay" method="post" id="payForm">
 	<table class="makeFormTable" style="padding : 30px; margin : 30px;">
 	<tr>
-	<td rowspan="2" colspan="2">
+	<td rowspan="3" colspan="2" width="500">
 	<c:if test="${want_book_info.booknum != 7 }">
 	<img alt="" src="resources/epub/ebookfile/cover/${want_book_info.booknum}.png"><br>
 	</c:if>
@@ -309,6 +315,13 @@ table.makeFormTable {
 				<input type="radio" name="day" id="day30" value="30">
 			</td>
 		</tr>
+		<tr><td colspan="4" style="text-align: center">
+			<table class="btntable"><tr><td align="right">
+				<a class="cart-btn btn-default" href="javascript:openPayWindow()"><i class="flaticon-shop"></i>결제하기</a>
+			</td><td align="left">
+				<a class="cart-btn btn-default" href="javascript:cancelForm()"><i class="flaticon-shop"></i>취소하기</a>
+			</td></tr></table>
+		</td></tr>
 		</table><br>
 	</td>
 	<td>
@@ -318,13 +331,7 @@ table.makeFormTable {
 	카드  : <input type="radio" name="pay_" id="card"><br>
 	<div id="card_cor">
 	</div>
-	</td>
-	<tr>
-	<td colspan="2" style="text-align: center">
-	<a class="cart-btn btn-default" href="javascript:openPayWindow()"><i class="flaticon-shop"></i>결제하기</a></td>
-	<td colspan="2" style="text-align: center">
-	<a class="cart-btn btn-default" href="javascript:cancelForm()"><i class="flaticon-shop"></i>취소하기</a></td>
-	</tr>
+	</td></tr>
 	<!-- 결제 창으로 넘어가기 -->
 	</table>
 	</form>
