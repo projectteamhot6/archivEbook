@@ -41,7 +41,13 @@ public class RecommendController {
 		listGender = dao.RecommendGender(id);
 		listNothing = dao.RecommendNothing(id);
 		if(list == null || list.size() == 0){
-			model.addAttribute("recommend", listNothing);
+			if(listNothing == null || listNothing.size() == 0){
+				list = dao.RecommendNoId();
+				model.addAttribute("recommend", list);
+			}
+			else{
+				model.addAttribute("recommend", listNothing);
+			}
 		}
 		else{
 			model.addAttribute("recommend", list);

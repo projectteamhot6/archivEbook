@@ -464,7 +464,7 @@ function updateBoard_send(num){
 
 
 
-
+	<c:if test="${boardList != null && boardList.size() >= 1}">
   <c:forEach begin="0" end="${boardList.size()-1}" var="i">
 <div class="item" style="margin: 20 0 20 0">
   <div class="image" style="margin: 0 20 0 0">
@@ -530,6 +530,7 @@ function updateBoard_send(num){
   <br>
 </div>
   </c:forEach>
+  </c:if>
 </div>
 <script type="text/javascript">
 function reply_submit(num){

@@ -299,13 +299,17 @@ body {
   <!-- Tab 1 -->
   <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
   <label for="tab1">Best Recommend</label>
-  <c:if test="${loginId != null }">
+  <c:if test="${loginId != null}">
   <!-- Tab 2 -->
+  <c:if test="${recommendGender.size() != 0 }">
   <input type="radio" name="tabset" id="tab2" aria-controls="getReply">
   <label for="tab2">Gender Recommend</label>
   <!-- Tab 3 -->
+  </c:if>
+  <c:if test="${AgeRe.size() != 0 }">
   <input type="radio" name="tabset" id="tab3" aria-controls="rauchbier">
   <label for="tab3">Age Recommend</label>
+  </c:if>
   </c:if>
   <div class="tab-panels">
     <section id="marzen" class="tab-panel">
