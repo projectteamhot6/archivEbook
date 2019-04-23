@@ -253,18 +253,6 @@ textarea.reply_content {
 <!-- /////////////////////////////////////검색 옵션 부분 js////////////////////////////////////////////////// -->
 <script src="resources/js/searchOption.js"></script>
 <!-- /////////////////////////////////////검색 옵션 부분 js////////////////////////////////////////////////// -->
-<script type="text/javascript">
-function searchBook(){
-	var bookName = document.getElementById('bookName');
-	
-	if(bookName.value.length < 1){
-		alert('검색할 내용을 입력하세요'); 
-		return;
-	}
-	
-	$('#search').submit();
-}
-</script>
 
 
 

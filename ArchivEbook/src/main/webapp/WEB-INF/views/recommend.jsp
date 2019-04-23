@@ -5,8 +5,8 @@
 <head>
 <title>Recommend</title>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-		<script src="resources/js/signupSignin.js"></script>
-		<script type="text/javascript" src="resources/js/signin_up.js"></script>
+<script src="resources/js/signupSignin.js"></script>
+<script type="text/javascript" src="resources/js/signin_up.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
 
 <style type="text/css">
@@ -464,7 +464,6 @@ body {
 </div>
 </div>
 </div></div>
-<script type="text/javascript" src="resources/epub/js/libs/jquery-3.3.1.min.js"></script>
 
 </body>
 </html>

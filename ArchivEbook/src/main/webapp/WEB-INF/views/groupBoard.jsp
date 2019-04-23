@@ -5,7 +5,8 @@
 <head>
 <title>Home</title>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-		<script src="resources/js/signupSignin.js"></script>
+<script src="resources/js/signupSignin.js"></script>
+<script type="text/javascript" src="resources/js/signin_up.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -349,22 +350,8 @@ body {
 
 
 
-<!-- ///////////////////////////////////////////검색js///////////////////////////////////////////////// -->
-<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
+<!-- ///////////////////////////////////////////검색js///////////////////////////////////////////////// -->>
 
-
-function searchBook(){
-	var bookName = document.getElementById('bookName');
-	
-	if(bookName.value.length < 1){
-		alert('검색할 내용을 입력하세요'); 
-		return;
-	}
-	
-	$('#search').submit();
-}
-</script>
 <!-- ///////////////////////////////////////////검색js///////////////////////////////////////////////// -->
 
 

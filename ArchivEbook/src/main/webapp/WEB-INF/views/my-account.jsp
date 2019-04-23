@@ -6,6 +6,7 @@
 <title>bookinformation</title>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/js/signupSignin.js"></script>
+<script type="text/javascript" src="resources/js/signin_up.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
 
 
@@ -525,12 +526,12 @@ $(function(){
 				<td height="50"><!-- 열2: 그룹장 id -->
 				<p style="color: #666"><b>Master &nbsp; </b>
 					<c:if test="${list.group_master == 1}">
-						${list.id }
+						${list.nickname }
 					</c:if>
 					<c:if test="${list.group_master != 1}">
 						<c:forEach var="i" items="${group_master}">
 							<c:if test="${list.groupname == i.groupname }">
-								${i.id}
+								${i.nickname}
 							</c:if>
 						</c:forEach>
 					</c:if>
@@ -686,16 +687,6 @@ $(function(){
 		$('#tab3').click();
 	}
 })
-function searchBook(){
-	var bookName = document.getElementById('bookName');
-	
-	if(bookName.value.length < 1){
-		alert('검색할 내용을 입력하세요'); 
-		return;
-	}
-	
-	$('#search').submit();
-}
 
 </script>
 <script type="text/javascript" src="resources/js/signin_up.js"></script>

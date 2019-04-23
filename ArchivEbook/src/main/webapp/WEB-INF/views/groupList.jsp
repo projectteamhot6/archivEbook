@@ -394,17 +394,6 @@ $(function(){
 </div>
 <script type="text/javascript">
 
-function searchBook(){
-	var bookName = document.getElementById('bookName');
-	
-	if(bookName.value.length < 1){
-		alert('검색할 내용을 입력하세요'); 
-		return;
-	}
-	
-	$('#search').submit();
-}
-
 function makeGroup() {
 	$.ajax({
 		url : 'checkMaster'

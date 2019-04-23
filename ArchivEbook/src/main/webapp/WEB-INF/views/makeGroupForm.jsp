@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<script src="resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/js/signupSignin.js"></script>
 <script type="text/javascript" src="resources/js/signin_up.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
@@ -368,21 +368,6 @@ textarea.group_intro {
 
 
 <!-- ///////////////////////////////////////////검색js///////////////////////////////////////////////// -->
-<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-
-
-function searchBook(){
-	var bookName = document.getElementById('bookName');
-	
-	if(bookName.value.length < 1){
-		alert('검색할 내용을 입력하세요'); 
-		return;
-	}
-	
-	$('#search').submit();
-}
-</script>
 <!-- ///////////////////////////////////////////검색js///////////////////////////////////////////////// -->
 
 

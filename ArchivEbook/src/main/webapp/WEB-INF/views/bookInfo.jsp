@@ -6,6 +6,7 @@
 <title>bookinformation</title>
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script src="resources/js/signupSignin.js"></script>
+<script type="text/javascript" src="resources/js/signin_up.js"></script>
 <link href="resources/css/header.css" rel="stylesheet" />
 
 
@@ -532,16 +533,6 @@ function submitForm(){
 		}
 	});
 }
-function searchBook(){
-	var bookName = document.getElementById('bookName');
-	
-	if(bookName.value.length < 1){
-		alert('검색할 내용을 입력하세요'); 
-		return;
-	}
-	
-	$('#search').submit();
-}
 </script>
 <!----------------------------------- 카카오 맵 API ------------------------------------------------->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=75f1d4e9550bf5ba1993aec460a39511&libraries=services,clusterer,drawing"></script>
@@ -656,6 +647,5 @@ function searchBook(){
 		}
 //--------------------------------<서평 끝>---------------------------------------------------------- */
 </script>
-<script type="text/javascript" src="resources/js/signin_up.js"></script>
 </body>
 </html>
