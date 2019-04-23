@@ -91,7 +91,8 @@ body {
   
 }
 .groupTable{
-	background-color: #f4eded;
+	background-color: #007fff;
+	color: white;
 }
 
 .pageButton:visited{
@@ -328,7 +329,7 @@ $(function(){
 
 
 
-<!-- ////////////////////////////책 리스트/////////////////////////////////// -->
+<!-- ////////////////////////////그룹 리스트/////////////////////////////////// -->
 <div align="center" class="groupList">
 	<table align="center" class="groupinfo">
 			<!-- 윗 공간 여백 주기 -->
@@ -363,7 +364,7 @@ $(function(){
 			</tr>
 			<tr height="50">
 				<td height="50"><!-- 열2: 그룹장 id -->
-				<p style="color: #666"><b>Master &nbsp; </b>${list.id}</p>
+				<p style="color: #666"><b>Master &nbsp; </b>${list.nickname}</p>
 				</td>
 			</tr>
 			<tr>
