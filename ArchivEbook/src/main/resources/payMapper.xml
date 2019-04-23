@@ -61,6 +61,8 @@
 		from
 			buy_user
 		where
+			want = 1
+			and 
 			booknum = #{booknum}
 			and
 			id = #{id}
@@ -92,7 +94,7 @@
 		update
 			buy_user
 		set
-			day += #{day}
+			day = day + #{day}
 		where
 			id = #{id}
 			and

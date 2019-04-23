@@ -22,25 +22,25 @@ body {
 .bookList{margin: 1px auto;}
 /*테이블 영역*/
 /*번호*/
-#col1, #col1_2{width: 60px;} 
+.col1{width: 60px;} 
 /*사진*/
-#col2, #col2_2{width: 150px; height: 200px;}
+.col2{width: 150px; height: 200px;}
 /*제목*/
-#row1col3, #row1col3_2{width: 600px; height: 40px;}
+.row1col3{width: 600px; height: 40px;}
 /*저자*/
-#row1col4, #row1col4_2{width: 150px; height: 40px;}
+.row1col4{width: 150px; height: 40px;}
 /*가격*/
-#row2col3, #row2col3_2{width: 600px; height: 40px;}
+.row2col3{width: 600px; height: 40px;}
 /*출판사*/
-#row1col4, #row1col4_2{width: 150px; height: 40px;}
+.row1col4{width: 150px; height: 40px;}
 /*설명 */
-#row3col3, #row3col3_2{width: 600px; height: 40px;} 
+.row3col3{width: 600px; height: 40px;} 
 /*구분선*/
 .line{border-bottom:3px; border-bottom-style:solid; border-bottom-color: #007fff;}
 /*버튼*/
-#buyButton{text-align: right; width: 200px;}
-#presentButton{text-align: right;}
-#cartButton{text-align: right;}
+.buyButton{text-align: right; width: 200px;}
+.presentButton{text-align: right;}
+.cartButton{text-align: right;}
 
 
 .cart-btn {
@@ -68,12 +68,12 @@ body {
   border: 1px solid #007fff;
   color: #007fff;
 }
-#row1col3 a, #row1col3_2 a {
+.row1col3 a {
 	color: #333;
 	transition: all 0.3s ease 0s;
 	text-decoration: none;
 }
-#row1col3 a:hover, #row1col3_2 a:hover {
+.row1col3 a:hover {
 	color: #007fff;
 }
 
@@ -277,9 +277,9 @@ body {
 			
 			<!-- 행1 -->
 			<tr>
-				<td rowspan="3" id="col1_2" align="center"><!-- 열1: 번호 -->
+				<td rowspan="3" class="col1" align="center"><!-- 열1: 번호 -->
 				</td>
-				<td rowspan="3" id="col2_2"><!-- 열2: 사진 -->
+				<td rowspan="3" class="col2"><!-- 열2: 사진 -->
 					<c:if test="${i.booknum != 7 }">
 					<img src="resources/epub/ebookfile/cover/${i.booknum }.png" style="width: 100%;">
 					</c:if>
@@ -290,17 +290,17 @@ body {
 				<td rowspan="3" width="20"><!-- 공백입니다 -->
 					<pre>&nbsp;&nbsp;&nbsp;</pre>
 				</td>
-				<td id="row1col3_2"><!-- 열4: 제목 -->
-					<a href="ebookInfo?bookNum=${i.booknum}"><p id="bookTitle_2" style="font-size: 20px"><b>${i.title}</b></p></a>		
+				<td class="row1col3"><!-- 열4: 제목 -->
+					<a href="ebookInfo?bookNum=${i.booknum}"><p class="bookTitle" style="font-size: 20px"><b>${i.title}</b></p></a>		
 				</td>
 				<c:if test="${loginId != null }">
 				<td rowspan="3" height="232"><!-- 열5: 구매 -->
 					<table>
 					<tr><td><!-- 공백 --></td></tr>
-					<tr><td id="buyButton" height="70">
+					<tr><td class="buyButton" height="70">
 					<a class="cart-btn btn-default" href="buyBook?booknum=${i.booknum }"><i class="flaticon-shop"></i>구매하기</a>
 					</td></tr>
-					<tr><td id="cartButton" height="70">
+					<tr><td class="cartButton" height="70">
 					<a class="cart-btn btn-default"  href="javascript:wantBook('${i.booknum }')"><i class="flaticon-shop"></i>찜하기</a>
 					</td></tr>
 					<tr><td><!-- 공백 --></td></tr>
@@ -310,8 +310,8 @@ body {
 			</tr>
 			<!-- 행2 -->
 			<tr>
-				<td id="row2col3_2"><!-- 열3: 가격 -->
-					<p><b>Price <br></b>1 week $2.00 &nbsp;| 2 week $4.00 &nbsp;| 1 month $6.00</p>
+				<td class="row2col3"><!-- 열3: 가격 -->
+					<p><b>Price <br></b>1 week $2.00 &nbsp;| 2 weeks $4.00 &nbsp;| 1 month $6.00</p>
 				</td>
 
 				<%--<td id="presentButton"><!-- 열5: 선물 -->
@@ -320,7 +320,7 @@ body {
 			</tr>
 			<!-- 행3 -->
 			<tr>
-				<td id="row3col3_2"><!-- 열3-4: 책 설명 -->
+				<td class="row3col3"><!-- 열3-4: 책 설명 -->
 					<p>${i.author }<br>${i.publisher}</p>
 				</td>
 			</tr>
@@ -345,10 +345,10 @@ body {
 			
 			<!-- 행1 -->
 			<tr>
-				<td rowspan="3" id="col1" align="center" style="width: 60;"><!-- 열1: 번호 -->
+				<td rowspan="3" class="col1" align="center" style="width: 60;"><!-- 열1: 번호 -->
 					<p>${var.count}</p>
 				</td>
-				<td rowspan="3" id="col2" style="width: 150;"><!-- 열2: 사진 -->
+				<td rowspan="3" class="col2" style="width: 150;"><!-- 열2: 사진 -->
 					<!-- 사진이 없는 책일 경우 -->
 						<c:if test="${i.image == null}">
 							<p>이미지 없음</p><!-- 또는 아카이브 로고 넣기 -->
@@ -359,14 +359,14 @@ body {
 				<td rowspan="3" width="20"><!-- 공백입니다 -->
 					<pre>&nbsp;&nbsp;&nbsp;</pre>
 				</td>
-				<td id="row1col3"><!-- 열4: 제목 -->
-					<a href="bookInfo?isbn=${i.isbn}"><p id="bookTitle" style="font-size: 20px"><b>${i.title}</b></p></a>		
+				<td class="row1col3"><!-- 열4: 제목 -->
+					<a href="bookInfo?isbn=${i.isbn}"><p class="bookTitle" style="font-size: 20px"><b>${i.title}</b></p></a>		
 				</td>
 
 			</tr>
 			<!-- 행2 -->
 			<tr>
-				<td id="row2col3"><!-- 열3: 가격 -->
+				<td class="row2col3"><!-- 열3: 가격 -->
 					<p><b>Price &nbsp;</b>${i.price}원</p>
 				</td>
 
@@ -376,7 +376,7 @@ body {
 			</tr>
 			<!-- 행3 -->
 			<tr>
-				<td id="row3col3"><!-- 열3-4: 책 설명 -->
+				<td class="row3col3"><!-- 열3-4: 책 설명 -->
 					<p>${i.description}</p>
 				</td>
 			</tr>

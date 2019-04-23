@@ -1,6 +1,8 @@
 package global.sesoc.archive.vo;
 
-public class Buy_userVO {
+import java.io.Serializable;
+
+public class Buy_userVO implements Serializable{
 	// day : 대여 가능 일수
 	private int day;
 	// inputdate : 도서를 대여한 시점

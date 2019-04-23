@@ -22,10 +22,10 @@ public class PayDAO {
 
 	public void setBuy_user(HashMap<String, Object> map) {
 		PayMapper mapper = sqlSession.getMapper(PayMapper.class);
-		Buy_userVO want = mapper.getWantBook(map);//
+		Buy_userVO want = mapper.getWantBook(map);//	WANT값이 1이고 책이름과 아이디가 동일한 사람의 책이 있나 확인
 		logger.debug("{}",map.get("used"));
 		int num = (int)map.get("used");
-		if(want == null){
+		if(want == null){							//없을 경우 0은 새로운 구매 1은 연장 2는 이전에 있던 거
 			if(num != 1){
 				mapper.setBuy_user(map);//
 				if(num == 0){
@@ -39,11 +39,11 @@ public class PayDAO {
 			}
 			else{
 				logger.debug("연장");
-				mapper.updateBook(map);	//
+				mapper.updateBook(map);	//연장한다.
 			}
 		}
 		else{
-			logger.debug("찜목록");
+			logger.debug("찜목록");				//있을 경우 > 찜목록 업데이트 이후 readbook에 새로이 세팅
 			mapper.updateWant(map);//
 			mapper.setReadBook(map);//
 		}

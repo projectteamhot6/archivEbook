@@ -98,8 +98,6 @@
 			id = #{id}
 			and
 			booknum = #{booknum}
-			and
-			want = 1
 	</select>
 	
 	<select id="checkNick" parameterType="String" resultType="int">
