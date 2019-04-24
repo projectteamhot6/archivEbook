@@ -288,15 +288,15 @@ img {vertical-align: middle;}
 <div class="slideshow-container">
 
 <div class="mySlides fade">
-  <img src="resources/img/1.jpg" style="width:100%">
+  <img src="resources/img/kindle-1867751_1920.jpg" style="width:1000px; height: 560px">
 </div>
 
 <div class="mySlides fade">
-  <img src="resources/img/2.jpg" style="width:100%">
+  <img src="resources/img/books-1204029_1920.jpg" style="width:1000px; height: 560px">
 </div>
 
 <div class="mySlides fade">
-  <img src="resources/img/3.jpg" style="width:100%">
+  <img src="resources/img/library-2616960_1920.jpg" style="width:1000px; height: 560px">
 </div>
 
 </div>
