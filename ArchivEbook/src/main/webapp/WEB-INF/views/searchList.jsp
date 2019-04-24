@@ -41,7 +41,9 @@ body {
 .buyButton{text-align: right; width: 200px;}
 .presentButton{text-align: right;}
 .cartButton{text-align: right;}
-
+.imgtable {
+	width: 150;
+}
 
 .cart-btn {
   line-height: 18px;
@@ -85,6 +87,9 @@ body {
 }
 .bookinfo {
 	width: 1000px;
+}
+.ebookinfo {
+	background-color: #f2f7ff;
 }
 </style>
 
@@ -268,8 +273,8 @@ body {
 
 
 <!-- ////////////////////////////책 리스트/////////////////////////////////// -->
-<div align="center" class="bookList">
-	<table align="center" class="bookinfo">
+<div align="center" class="bookList ebookinfo">
+	<table align="center" class="bookinfo ebookinfo2">
 		<c:if test="${ebook!=null}">
 			<c:forEach var = "i" items="${ebook}" varStatus="var">
 			<!-- 윗 공간 여백 주기 -->
@@ -279,12 +284,12 @@ body {
 			<tr>
 				<td rowspan="3" class="col1" align="center"><!-- 열1: 번호 -->
 				</td>
-				<td rowspan="3" class="col2"><!-- 열2: 사진 -->
+				<td rowspan="3" class="col2" width="150"><!-- 열2: 사진 -->
 					<c:if test="${i.booknum != 7 }">
-					<img src="resources/epub/ebookfile/cover/${i.booknum }.png" style="width: 100%;">
+					<img src="resources/epub/ebookfile/cover/${i.booknum }.png" style="width: 150;">
 					</c:if>
 					<c:if test="${i.booknum == 7 }">
-					<img src="resources/epub/ebookfile/cover/${i.booknum }.jpg" style="width: 100%;">
+					<img src="resources/epub/ebookfile/cover/${i.booknum }.jpg" style="width: 150;">
 					</c:if>
 				</td>
 				<td rowspan="3" width="20"><!-- 공백입니다 -->
@@ -345,16 +350,18 @@ body {
 			
 			<!-- 행1 -->
 			<tr>
-				<td rowspan="3" class="col1" align="center" style="width: 60;"><!-- 열1: 번호 -->
+				<td rowspan="3" class="col1" align="center"><!-- 열1: 번호 -->
 					<p>${var.count}</p>
 				</td>
-				<td rowspan="3" class="col2" style="width: 150;"><!-- 열2: 사진 -->
+				<td rowspan="3" class="col2 imgtable" style="width: 150;"><!-- 열2: 사진 -->
 					<!-- 사진이 없는 책일 경우 -->
 						<c:if test="${i.image == null}">
-							<p>이미지 없음</p><!-- 또는 아카이브 로고 넣기 -->
+							<img alt="" src="resources/img/blankimg.png" width="150"> <!-- 또는 아카이브 로고 넣기 -->
 						</c:if>
 						<!-- 사진이 있는 책일 경우 -->
-						<img src="${i.image}">
+						<c:if test="${i.image != null}">
+						<img src="${i.image}" width="150" onerror="this.src='resources/img/blankimg.png'">
+						</c:if>
 				</td>
 				<td rowspan="3" width="20"><!-- 공백입니다 -->
 					<pre>&nbsp;&nbsp;&nbsp;</pre>

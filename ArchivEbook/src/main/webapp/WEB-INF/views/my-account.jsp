@@ -94,13 +94,13 @@ body {
 
 .tabset > label:hover,
 .tabset > input:focus + label {
-  color: #06c;
+  color: #007fff;
 }
 
 .tabset > label:hover::after,
 .tabset > input:focus + label::after,
 .tabset > input:checked + label::after {
-  background: #06c;
+  background: #007fff;
 }
 
 .tabset > input:checked + label {
@@ -114,9 +114,6 @@ body {
   border-top: 1px solid #ccc;
 }
 
-.all {
-  padding: 30px;
-}
 .header .searchbar a {
    color: #aaa;
    font-weight: 700;
@@ -206,6 +203,11 @@ textarea.reply_content, input.update_form {
 }
 #search {
   margin-bottom: 16;
+}
+
+.lib {
+	text-align: center;
+	width: 1000;
 }
 </style>
 <script type="text/javascript">
@@ -433,7 +435,7 @@ $(function(){
 
 <!-- Single Product Area Start -->
 <div class="single-product-area section-padding" style="position: relative;top:200;">
-<div class="all">
+<div class="all" style="width: 1060px;padding: 30">
 <div class="tabset">
   <!-- Tab 1 -->
   <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
@@ -512,7 +514,7 @@ $(function(){
 				<div id="app">
 					<p class="m-flip js-flip" style="font-size: 30px;">
 						<span class="m-flip_item">${list.groupname}</span>
-						<span class="m-flip_item">ENTER?</span>
+						<span class="m-flip_item">ENTER</span>
 					</p>
 				</div>
 				</a>
@@ -548,25 +550,22 @@ $(function(){
 		<c:choose>
 			<c:when test="${reply_list_user != null && reply_list_user.size() != 0}">
 				<div>
-					<table >
-						<tr>
-							<th> 책 제목 </th> <th> 출판 </th> <th> 내용 </th><th> 평점 </th><th>날짜</th>
+					<table>
+						<tr style="background-color: #eff6ff;">
+							<th width="150" align="center">도서명</th><th>내가 남긴 서평</th><th width="100">나의 평점</th><th width="100">날짜</th>
 						</tr>
 						<c:forEach items="${reply_list_user}" var="list">
 							<tr>
-								<td>
+								<td align="center">
 									${list.title}
-								</td>
-								<td>
-									${list.publisher }
 								</td>
 								<td>
 									${list.content }
 								</td>
-								<td>
-									${list.point }
+								<td align="center">
+									${list.point }점
 								</td>
-								<td>
+								<td align="center">
 									${list.inputdate}
 								</td>
 							</tr>
@@ -598,11 +597,11 @@ $(function(){
 	    </section>
 		<section id="dunkles" class="tab-panel">
 		<c:if test="${user_past.size() > 0}">
-			<table>				
-			<c:forEach begin="0" end="${user_past.size()-1}" var="i" step="4">
+			<table class="lib">				
+			<c:forEach begin="0" end="${user_past.size()-1}" var="i" step="3">
 				<tr>
-				<c:forEach begin="${i}" end="${i+3}" var="j">
-				<c:if test="${j <=  user_past.size()-1}"><td>
+				<c:forEach begin="${i}" end="${i+2}" var="j">
+				<c:if test="${j <=  user_past.size()-1}"><td width="300">
 				<a href="buyBook?booknum=${user_past[j].booknum}">
 				<c:if test="${user_past[j].booknum != 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${user_past[j].booknum}.png" width="120px"><br>
@@ -611,46 +610,54 @@ $(function(){
 					<img alt="" src="resources/epub/ebookfile/cover/${user_past[j].booknum}.jpg" width="120px"><br>
 				</c:if>
 				</a>
-				<p>저자 : ${user_past[j].author}</p>
-				<p>제목 : ${user_past[j].title }</p>
-				<p>대여했던 날짜 : ${user_past[j].inputdate}</p></td></c:if>
-				</c:forEach></tr>
+				<p>${user_past[j].title }</p>
+				<p>${user_past[j].author}</p>
+				<p><b>Rented Date</b> ${user_past[j].inputdate}</p></td></c:if>
+				</c:forEach>
+				</tr>
+				<tr>
+					<td colspan="3">
+					<img alt="" src="resources/img/libbbbb.png" width="900">
+					</td>
+				</tr>
 			</c:forEach>
 			</table>
 		</c:if>
     	</section>
 		<section id="presents" class="tab-panel">
 		<c:if test="${user_present.size() > 0}">
-		<table>		
-			<c:forEach var="i" begin="0" end="${user_present.size()-1}" step="4">
-			<tr>
-			<c:forEach begin="${i}" end="${i+3}" var="j"><c:if test="${j <=  user_present.size()-1}"><td>
-				<c:if test="${user_present[j].booknum != 7 }">
-					<img alt="" src="resources/epub/ebookfile/cover/${user_present[j].booknum}.png" width="120px"><br>
-				</c:if>
-				<c:if test="${user_present[j].booknum == 7 }">
-					<img alt="" src="resources/epub/ebookfile/cover/${user_present[j].booknum}.jpg" width="120px"><br>
-				</c:if>
-					<p>저자 : ${user_present[j].author}</p>
-					<p>대여 시작일 : ${user_present[j].inputdate}</p>
-					<div style="margin: 30px">
-			 				<a class="cart-btn btn-default" href="javascript:view(${j})">
-                 			 <i class="flaticon-shop"></i>
-                 				${user_present[j].title}
-               				</a>
-               		</div>
-					<input type="hidden" id="booknum${j}" value="${user_present[j].booknum}"></td></c:if>
-			</c:forEach></tr>
-			</c:forEach>
+		<table class="lib">		
+			<c:forEach var="i" begin="0" end="${user_present.size()-1}" step="3">
+         <tr>
+         <c:forEach begin="${i}" end="${i+2}" var="j"><c:if test="${j <=  user_present.size()-1}"><td width="300">
+            <c:if test="${user_present[j].booknum != 7 }">
+               <a href="javascript:view(${j})">
+               <img alt="" src="resources/epub/ebookfile/cover/${user_present[j].booknum}.png" width="120px"></a><br>
+            </c:if>
+            <c:if test="${user_present[j].booknum == 7 }">
+               <a href="javascript:view(${j})">
+               <img alt="" src="resources/epub/ebookfile/cover/${user_present[j].booknum}.jpg" width="120px"></a><br>
+            </c:if>
+               <p>${user_present[j].title}</p>
+               <p>${user_present[j].author}</p>
+               <p><b>Rented date</b> ${user_present[j].inputdate}</p>
+               <input type="hidden" id="booknum${j}" value="${user_present[j].booknum}"></td></c:if>
+         </c:forEach></tr>
+         <tr>
+			<td colspan="3">
+				<img alt="" src="resources/img/libbbbb.png" width="900">	
+			</td>
+		</tr>
+         </c:forEach>
 		</table>
 		</c:if>
     	</section>
 		<section id="future" class="tab-panel">
 		<c:if test="${user_want.size() > 0}">
-		<table>
-			<c:forEach begin="0" end="${user_want.size()-1}" var="i" step="4">
+		<table class="lib">
+			<c:forEach begin="0" end="${user_want.size()-1}" var="i" step="3">
 			<tr>
-			<c:forEach begin="${i}" end="${i+3}" var="j"><c:if test="${j <=  user_want.size()-1}"><td>
+			<c:forEach begin="${i}" end="${i+2}" var="j"><c:if test="${j <=  user_want.size()-1}"><td width="300">
 				<a href="buyBook?booknum=${user_want[j].booknum}">
 					<c:if test="${user_want[j].booknum != 7 }">
 						<img alt="" src="resources/epub/ebookfile/cover/${user_want[j].booknum}.png" width="120px"><br>
@@ -659,9 +666,15 @@ $(function(){
 						<img alt="" src="resources/epub/ebookfile/cover/${user_want[j].booknum}.jpg" width="120px"><br>
 					</c:if>
 				</a>
-				<p>저자 : ${user_want[j].author}</p>
-				<p>제목 : ${user_want[j].title }</p></td></c:if>
+				<p>${user_want[j].title }</p>
+				<p>${user_want[j].author}</p>
+				</td></c:if>
 				</c:forEach></tr>
+         <tr>
+			<td colspan="3">
+					<img alt="" src="resources/img/libbbbb.png" width="900">
+			</td>
+		</tr>
 			</c:forEach>
 		</table>
 		</c:if>
@@ -672,9 +685,6 @@ $(function(){
 </div>
 
 <script type="text/javascript">
-$(function(){
-	$('#viewBook').on('click',view);
-});
 function view(num){
 	var id = '#booknum'+num;
 	var addressNum = $(id).val();

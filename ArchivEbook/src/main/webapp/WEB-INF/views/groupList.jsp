@@ -20,10 +20,6 @@ body {
 
 /* -----------------이거는 그룹 들어가는 버튼------------------ */
 
-/* @IMPORT FONTS */
-/**
- * ANIMATION - FLIP
- */
 .m-flip{
 	overflow: hidden;
 	cursor: pointer;
@@ -347,7 +343,7 @@ $(function(){
 				<div id="app">
 					<p class="m-flip js-flip" style="font-size: 30px;">
 						<span class="m-flip_item">${list.groupname}</span>
-						<span class="m-flip_item">ENTER?</span>
+						<span class="m-flip_item">ENTER</span>
 					</p>
 				</div>
 				</a>

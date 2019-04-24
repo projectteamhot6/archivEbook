@@ -258,9 +258,9 @@ textarea.reply_content {
 
 <div>
 <div id="listBook" style="top : 200px;position:relative;margin-left: 250px;margin-right: 250px;">
-<h2>This is where you leave a book review.</h2>
+<h2>Grade & Review</h2>
 <br>
-<input type="text" list="titles" name="title" value="" id="title" placeholder="Do you know the title of the book?" size="100">
+<input type="text" list="titles" name="title" value="" id="title" placeholder="Please enter the book name." size="100">
 	<datalist id="titles">
 <c:forEach var="list" items="${book_list_20190420 }">
     <option value="${list.title }">
@@ -271,19 +271,19 @@ textarea.reply_content {
 <form action="reply_book" method="post" id="replyForm">
 <input type="hidden" value="" id="bt" name="title">
 <input type="hidden" value="ebook" id="bp" name="publisher">
-평점 :	<select name="point">
-			<option value="1"> 1 </option>
-			<option value="2"> 2 </option>
-			<option value="3"> 3 </option>
-			<option value="4"> 4 </option>
-			<option value="5" selected="selected"> 5 </option>
-		</select><br><br>
-리뷰 :<br>	<textarea rows="10" cols="100" name="content" id="content" class="reply_content"></textarea><br><br>
-<div style="margin: 30px">
+<b>평점</b> <select name="point">
+	<option value="1"> 1 </option>
+	<option value="2"> 2 </option>
+	<option value="3"> 3 </option>
+	<option value="4"> 4 </option>
+	<option value="5" selected="selected"> 5 </option>
+</select><br><br>
+<b>리뷰</b><br><textarea rows="10" cols="100" name="content" id="content" class="reply_content"></textarea><br><br>
+<div style="margin: 30px;padding-left: 290px;">
 	<c:if test="${loginId != null }">
 	<a class="cart-btn btn-default" href="javascript:setReply()">
 		<i class="flaticon-shop"></i>
-		전송
+		등록
 	</a>
 	</c:if>
 </div>

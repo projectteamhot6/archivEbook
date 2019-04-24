@@ -57,7 +57,7 @@ body {
 	font-size:18px;
 	resize:none;
 	padding: 30 30 30 30;
-	background-color: #f6f6f6;
+	background-color: #eff6ff;
 }
 .replytext {
 	overflow:hidden;
@@ -67,11 +67,11 @@ body {
 	font-size:13px;
 	resize:none;
 	padding: 10 10 10 10;
-	background-color: #f6f6f6;
+	background-color: #eff6ff;
 }
 #title {
 	background-color:transparent;
-	border-bottom:3px solid #f6f6f6;
+	border-bottom:3px solid #eff6ff;
 	border-top:none;
 	border-left:none;
 	border-right:none;
@@ -163,7 +163,7 @@ body {
 .panel {
   padding: 5px;
   text-align: center;
-  background-color: #f6f6f6;
+  background-color: #eff6ff;
   display: none;
 }
 
@@ -390,7 +390,7 @@ function writeForm(){
 <div id="wrapper">
 	<form id="paper" method="post" action="write" style="width: 800px">
 		<div id="margin">Title: <input id="title" type="text" name="title" style="border-radius:0px;"></div>
-		<textarea placeholder="Enter something funny." id="text" name="content" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; width: 800px;"></textarea>  
+		<textarea placeholder="내용을 입력해주세요." id="text" name="content" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; width: 800px;"></textarea>  
 		<a id="sendBoard" class="btn-default" href="javascript:writeForm()"><i class="flaticon-shop"></i>send</a>
 	</form>
 </div>
@@ -459,7 +459,7 @@ function updateBoard_send(num){
       
       <table>
       <tr><td align="center">
-      <img src="resources/img/ps.png" width="80"/>
+      <img src="resources/img/person3333.png" width="80"/>
       </td></tr>
       <tr><td align="center">
       <span><b>${boardList[i].nickname}</b></span>
@@ -483,9 +483,7 @@ function updateBoard_send(num){
       </c:if>
       </td><!-- 삭제 -->
       </tr></table>
-      <p style="width: 650">
-      	 ${boardList[i].content }
-      </p>
+      <pre style="width: 650;padding-left: 5px;font-family:Verdana, sans-serif;font-size: 17;margin-bottom: 20px;">${boardList[i].content }</pre>
       <div class="flip" id="${i}">Click see all comments</div>
       <div id="panel${i}" class="panel">
       	<c:forEach items="${replylist }" var="listRE">

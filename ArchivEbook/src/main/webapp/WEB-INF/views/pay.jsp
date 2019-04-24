@@ -75,6 +75,8 @@ table.makeFormTable {
   float: right;
   margin-right: 40px;
 }
+
+
 </style>
 
 
@@ -263,78 +265,63 @@ table.makeFormTable {
 <div>
 <div class="buyBookCss" style="padding-top : 200px">
 	<form action="pay" method="post" id="payForm">
-	<table class="makeFormTable" style="padding : 30px; margin : 30px;">
-	<tr>
-	<td rowspan="3" colspan="2" width="500">
-	<c:if test="${want_book_info.booknum != 7 }">
-	<img alt="" src="resources/epub/ebookfile/cover/${want_book_info.booknum}.png"><br>
-	</c:if>
-	<c:if test="${want_book_info.booknum == 7 }">
-	<img alt="" src="resources/epub/ebookfile/cover/${want_book_info.booknum}.jpg"><br>
-	</c:if>
-	</td>
-	<td colspan="2">
-	<p>저자 : ${want_book_info.author}</p>
-	<p>제목 : ${want_book_info.title }</p>
-	<p>출판사 : ${want_book_info.publisher }</p>
-	</td>
-	<tr>
-	<td>
-	대여 기간 : <br> <!-- 7일 14일 30일 ; 금액 나옴-->
-		<table>
-		<tr>
-			<td>
-				7days
-			</td>
-			<td>
-				$ 2.00
-			</td>
-			<td>
-				<input type="radio" name="day" id="day7" value="7">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				14days
-			</td>
-			<td>
-				$ 4.00
-			</td>
-			<td>
-				<input type="radio" name="day" id="day14" value="14">
-			</td>
-		</tr>
-		<tr>
-			<td>
-				30days
-			</td>
-			<td>
-				$ 6.00
-			</td>
-			<td>
-				<input type="radio" name="day" id="day30" value="30">
-			</td>
-		</tr>
-		<tr><td colspan="4" style="text-align: center">
-			<table class="btntable"><tr><td align="right">
-				<a class="cart-btn btn-default" href="javascript:openPayWindow()"><i class="flaticon-shop"></i>결제하기</a>
-			</td><td align="left">
-				<a class="cart-btn btn-default" href="javascript:cancelForm()"><i class="flaticon-shop"></i>취소하기</a>
-			</td></tr></table>
-		</td></tr>
-		</table><br>
-	</td>
-	<td>
-	결제 금액 : <div id="price"></div>
-	<span style="color : hsl(0, 20%, 50%)">결제 방식</span> <br> 
-	무통장 입금 : <input type="radio" name="pay_" id="cash" value=""><br>
-	카드  : <input type="radio" name="pay_" id="card"><br>
-	<div id="card_cor">
-	</div>
-	</td></tr>
-	<!-- 결제 창으로 넘어가기 -->
-	</table>
-	</form>
+	<table class="makeFormTable">
+     <tr>
+      <td rowspan="3" width="500">
+         <c:if test="${want_book_info.booknum != 7 }">
+            <img alt="" src="resources/epub/ebookfile/cover/${want_book_info.booknum}.png"><br>
+         </c:if>
+         <c:if test="${want_book_info.booknum == 7 }">
+            <img alt="" src="resources/epub/ebookfile/cover/${want_book_info.booknum}.jpg"><br>
+         </c:if>
+      </td>
+      <td colspan="2" width="500">
+         <table style="color: #878787">
+            <tr><td width="70">저자</td><td>${want_book_info.author}</td></tr>
+            <tr><td width="70">제목</td><td>${want_book_info.title }</td></tr>
+            <tr><td width="70">출판사</td><td>${want_book_info.publisher }</td></tr>
+         </table>
+      </td>
+	 </tr>
+	 <tr>
+	      <td width="220">
+	         <table class="paytable1">
+	            <tr>
+	               <td colspan="3">대여기간</td>
+	            </tr>
+	            <tr>
+	               <td>7days</td><td>$2.00</td><td><input type="radio" name="day" id="day7" value="7"></td>
+	            </tr><tr>
+	               <td>14days</td><td>$4.00</td><td><input type="radio" name="day" id="day14" value="14"></td>
+	            </tr><tr>
+	               <td>30days</td><td>$6.00</td><td><input type="radio" name="day" id="day30" value="30"></td>
+	            </tr>
+	         </table>
+	      </td>
+	      <td width="280">
+	         <table class="paytable2">
+	            <tr><td>결제금액</td><td><div id="price"></div></td></tr>
+	            <tr><td colspan="3"><span style="color : hsl(0, 20%, 50%)">결제 방식</span></td></tr>
+	            <tr>
+	               <td>무통장 입금</td><td colspan="2"><input type="radio" name="pay_" id="cash" value=""></td>
+	            </tr><tr>
+	               <td>카드</td><td><input type="radio" name="pay_" id="card"></td><td><div id="card_cor"></div></td>
+	            </tr>
+	         </table>
+	      </td>
+	   </tr>
+	   <tr style="text-align: center">
+	      <td colspan="2">
+	      	<table><tr><td style="float: right;">
+	          <a class="cart-btn btn-default" href="javascript:openPayWindow()"><i class="flaticon-shop"></i>결제하기</a>
+	        </td><td style="float: left;">
+	          <a class="cart-btn btn-default" href="javascript:cancelForm()"><i class="flaticon-shop"></i>취소하기</a>
+	      	</td></tr></table>
+	      </td>
+	   </tr>
+	   <!-- 결제 창으로 넘어가기 -->
+	   </table>
+		</form>
 </div>
 </div>
 <script type="text/javascript">
@@ -360,7 +347,7 @@ $(function(){
 	a += '<option value="6">기업</option>';		
 	a += '</select>';
 function cancelForm(){
-		location.href="./";
+		location.href="";
 }
 function selectForm(){
 	$('#card').off('click');
@@ -388,25 +375,25 @@ function openPayWindow(){
 	}
 	switch ( check3 ) {
 		case '1':
-       		window.open('payment?type=hyundai&price='+check1, 'window_pay', 'width=300, height=400, top=200, left=200');
+       		window.open('payment?type=hyundai&price='+check1, 'window_pay', 'width=600, height=400, top=200, left=200');
 			break;
 		case '2':
-			window.open('payment?type=shinhan&price='+check1, 'window_pay', 'width=300, height=400, top=200, left=200');
+			window.open('payment?type=shinhan&price='+check1, 'window_pay', 'width=600, height=400, top=200, left=200');
 			break;
 		case '3':
-			window.open('payment?type=kb&price='+check1, 'window_pay', 'width=300, height=400, top=200, left=200');
+			window.open('payment?type=kb&price='+check1, 'window_pay', 'width=600, height=400, top=200, left=200');
 			break;
 		case '4':
-			window.open('payment?type=nh&price='+check1, 'window_pay', 'width=300, height=400, top=200, left=200');
+			window.open('payment?type=nh&price='+check1, 'window_pay', 'width=600, height=400, top=200, left=200');
 			break;
 		case '5':
-			window.open('payment?type=gwangju&price='+check1, 'window_pay', 'width=300, height=400, top=200, left=200');
+			window.open('payment?type=gwangju&price='+check1, 'window_pay', 'width=600, height=400, top=200, left=200');
 			break;
 		case '6':
-			window.open('payment?type=ibk&price='+check1, 'window_pay', 'width=300, height=400, top=200, left=200');
+			window.open('payment?type=ibk&price='+check1, 'window_pay', 'width=600, height=400, top=200, left=200');
 			break;
 		default :
-			window.open('payment?type=cash&price='+check1, 'window_cash', 'width=300, height=400, top=200, left=200');
+			window.open('payment?type=cash&price='+check1, 'window_cash', 'width=600, height=400, top=200, left=200');
 	}
 }
 </script>
