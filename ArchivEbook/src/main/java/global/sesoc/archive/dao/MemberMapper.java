@@ -13,7 +13,6 @@ public interface MemberMapper {
 
 	public void setWant(Buy_userVO bu);
 
-	public int checkWant(Buy_userVO bu);
 
 	public int checkNick(String nick);
 

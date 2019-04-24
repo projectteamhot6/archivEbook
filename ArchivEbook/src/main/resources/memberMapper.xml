@@ -89,17 +89,6 @@
    		)
    </insert>
 	
-	<select id="checkWant" parameterType="buy_user" resultType="int">
-		select
-			count(*)
-		from
-			buy_user
-		where
-			id = #{id}
-			and
-			booknum = #{booknum}
-	</select>
-	
 	<select id="checkNick" parameterType="String" resultType="int">
 		select
 			count(*)

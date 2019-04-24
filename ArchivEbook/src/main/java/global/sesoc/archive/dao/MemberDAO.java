@@ -1,5 +1,7 @@
 package global.sesoc.archive.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -42,10 +44,13 @@ public class MemberDAO {
 	}
 
 	public boolean checkWant(Buy_userVO bu) {
-		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);	
-		int count = 0;
-		count = mapper.checkWant(bu);
-		if(count == 0){
+		PayMapper mapper = sqlSession.getMapper(PayMapper.class);	
+		Buy_userVO result = null;
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("booknum", bu.getBooknum());
+		map.put("id", bu.getId());
+		result = mapper.getWantBook(map);
+		if(result == null){
 			return false;
 		}
 		return true;
