@@ -64,19 +64,11 @@
 				
 				<a id="show-Toc" class="show_view icon-list-1 active" data-view="Toc">TOC</a>
 				<a id="show-Bookmarks" class="show_view icon-bookmark" data-view="Bookmarks">Bookmarks</a>
-				<a id="show-Notes" class="show_view icon-edit" data-view="Notes">Notes</a>
 			</div>
 			<div id="tocView" class="view">
 			</div>
 			<div id="bookmarksView" class="view">
 				<ul id="bookmarks"></ul>
-			</div>
-			<div id="notesView" class="view">
-				<div id="new-note">
-					<textarea id="note-text"></textarea>
-					<button id="note-anchor">Anchor</button>
-				</div>
-				<ol id="notes"></ol>
 			</div>
 		</div>
 		<div id="main">
