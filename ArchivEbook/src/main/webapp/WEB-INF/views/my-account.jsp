@@ -146,7 +146,7 @@ textarea.reply_content, input.update_form {
 }
 .groupEnter{
 	text-decoration: none;
-	color: #007fff;
+	color: gray;
 }
 /* -----------------이거는 그룹 들어가는 버튼------------------ */
 
@@ -176,7 +176,7 @@ textarea.reply_content, input.update_form {
 }
 
 .groupTable{
-	background-color: #007fff;
+	background-color: #56aaff;
 	color: white;
 }
 
@@ -551,7 +551,7 @@ $(function(){
 			<c:when test="${reply_list_user != null && reply_list_user.size() != 0}">
 				<div>
 					<table>
-						<tr style="background-color: #eff6ff;">
+						<tr style="background-color: #56aaff; color: white;">
 							<th width="150" align="center">도서명</th><th>내가 남긴 서평</th><th width="100">나의 평점</th><th width="100">날짜</th>
 						</tr>
 						<c:forEach items="${reply_list_user}" var="list">
@@ -573,15 +573,15 @@ $(function(){
 					</table>
 				</div>
 			<div class="buttonPage_Make" style="text-align: center">
-				<a class="pageButton" href="my-account?page=${navi2.currentPage - navi2.pagePerGroup}&check_navi2=1">◁◁</a>&nbsp;&nbsp;
-				<a class="pageButton" href="my-account?page=${navi2.currentPage - 1}&check_navi2=1">◀</a>&nbsp;&nbsp;
+				<a class="pageButton" href="my-account?page=${navi2.currentPage - navi2.pagePerGroup}&check_navi2=1"><img alt="" src="resources/img/pageback2.png" height="10"></a>&nbsp;&nbsp;
+				<a class="pageButton" href="my-account?page=${navi2.currentPage - 1}&check_navi2=1"><img alt="" src="resources/img/pageback.png" height="10"></a>&nbsp;&nbsp;
 				<c:forEach begin="${navi2.startPageGroup }" end="${navi2.endPageGroup }" var="i">
-					<c:if test="${navi2.currentPage == i}">[</c:if>
-						<a class="pageButton" href="my-account?page=${i}&check_navi2=1">${i}</a>
-					<c:if test="${navi2.currentPage == i}">]</c:if>
+					<c:if test="${navi2.currentPage == i}"></c:if>
+						<a class="pageButton" href="my-account?page=${i}&check_navi2=1">${i}</a> &nbsp;
+					<c:if test="${navi2.currentPage == i}"></c:if>
 				</c:forEach>
-					<a class="pageButton" href="my-account?page=${navi2.currentPage + 1}&check_navi2=1">▶</a>&nbsp;&nbsp;
-					<a class="pageButton" href="my-account?page=${navi2.currentPage + navi2.pagePerGroup}&check_navi2=1">▷▷</a>
+					<a class="pageButton" href="my-account?page=${navi2.currentPage + 1}&check_navi2=1"><img alt="" src="resources/img/pagenext.png" height="10"></a>&nbsp;&nbsp;
+					<a class="pageButton" href="my-account?page=${navi2.currentPage + navi2.pagePerGroup}&check_navi2=1"><img alt="" src="resources/img/pagenext2.png" height="10"></a>
 			</div>
 			</c:when>
 			<c:otherwise>
@@ -610,14 +610,18 @@ $(function(){
 					<img alt="" src="resources/epub/ebookfile/cover/${user_past[j].booknum}.jpg" width="120px"><br>
 				</c:if>
 				</a>
-				<p>${user_past[j].title }</p>
-				<p>${user_past[j].author}</p>
-				<p><b>Rented Date</b> ${user_past[j].inputdate}</p></td></c:if>
+				<p><b>${user_past[j].title }</b></p>
+				<p style="color: gray;">${user_past[j].author}</p>
+				<p style="color: gray;"><b>Rented Date</b> ${user_past[j].inputdate}</p></td></c:if>
 				</c:forEach>
 				</tr>
 				<tr>
 					<td colspan="3">
-					<img alt="" src="resources/img/libbbbb.png" width="900">
+					<img alt="" src="resources/img/libgr.png" width="1000" height="60">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" height="30">
 					</td>
 				</tr>
 			</c:forEach>
@@ -638,14 +642,18 @@ $(function(){
                <a href="javascript:view(${j})">
                <img alt="" src="resources/epub/ebookfile/cover/${user_present[j].booknum}.jpg" width="120px"></a><br>
             </c:if>
-               <p>${user_present[j].title}</p>
-               <p>${user_present[j].author}</p>
-               <p><b>Rented date</b> ${user_present[j].inputdate}</p>
+               <p><b>${user_present[j].title}</b></p>
+               <p style="color: gray;">${user_present[j].author}</p>
+               <p style="color: gray;"><b>Rented date</b> ${user_present[j].inputdate}</p>
                <input type="hidden" id="booknum${j}" value="${user_present[j].booknum}"></td></c:if>
          </c:forEach></tr>
          <tr>
 			<td colspan="3">
-				<img alt="" src="resources/img/libbbbb.png" width="900">	
+				<img alt="" src="resources/img/libgr.png" width="1000" height="60">	
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="30">
 			</td>
 		</tr>
          </c:forEach>
@@ -666,13 +674,17 @@ $(function(){
 						<img alt="" src="resources/epub/ebookfile/cover/${user_want[j].booknum}.jpg" width="120px"><br>
 					</c:if>
 				</a>
-				<p>${user_want[j].title }</p>
-				<p>${user_want[j].author}</p>
+				<p><b>${user_want[j].title }</b></p>
+				<p style="color: gray;">${user_want[j].author}</p>
 				</td></c:if>
 				</c:forEach></tr>
          <tr>
 			<td colspan="3">
-					<img alt="" src="resources/img/libbbbb.png" width="900">
+				<img alt="" src="resources/img/libgr.png" width="1000" height="60">
+			</td>
+		</tr>
+		<tr>
+			<td colspan="3" height="30">
 			</td>
 		</tr>
 			</c:forEach>

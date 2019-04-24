@@ -36,7 +36,7 @@ body {
 }
 .groupEnter{
 	text-decoration: none;
-	color: #007fff;
+	color: gray;
 }
 /* -----------------이거는 그룹 들어가는 버튼------------------ */
 
@@ -47,7 +47,7 @@ body {
 /*책 제목 크기*/
 
 
-.line{border-bottom:3px; border-bottom-style:solid; border-bottom-color: #007fff;}
+.line{border-bottom:3px; border-bottom-style:solid; border-bottom-color: #56aaff;}
 
 
 .groupList{
@@ -87,7 +87,7 @@ body {
   
 }
 .groupTable{
-	background-color: #007fff;
+	background-color: #56aaff;
 	color: white;
 }
 
@@ -369,15 +369,15 @@ $(function(){
 			</c:forEach>
 	</table>
 	<div class="buttonPage_Make">
-	<a class="pageButton" href="groupList?page=${navi3.currentPage - navi3.pagePerGroup}">◁◁</a>&nbsp;&nbsp;
-	<a class="pageButton" href="groupList?page=${navi3.currentPage - 1}">◀</a>&nbsp;&nbsp;
+	<a class="pageButton" href="groupList?page=${navi3.currentPage - navi3.pagePerGroup}"><img alt="" src="resources/img/pageback2.png" height="10"></a>&nbsp;&nbsp;
+	<a class="pageButton" href="groupList?page=${navi3.currentPage - 1}"><img alt="" src="resources/img/pageback.png" height="10"></a>&nbsp;&nbsp;
 	<c:forEach begin="${navi3.startPageGroup }" end="${navi3.endPageGroup }" var="i">
-		<c:if test="${navi3.currentPage == i}">[</c:if>
-			<a class="pageButton" href="groupList?page=${i}">${i}</a>
-		<c:if test="${navi3.currentPage == i}">]</c:if>
+		<c:if test="${navi3.currentPage == i}"></c:if>
+			<a class="pageButton" href="groupList?page=${i}">${i}</a> &nbsp;
+		<c:if test="${navi3.currentPage == i}"></c:if>
 	</c:forEach>
-	<a class="pageButton" href="groupList?page=${navi3.currentPage + 1}">▶</a>&nbsp;&nbsp;
-	<a class="pageButton" href="groupList?page=${navi3.currentPage + navi3.pagePerGroup}">▷▷</a><br>
+	<a class="pageButton" href="groupList?page=${navi3.currentPage + 1}"><img alt="" src="resources/img/pagenext.png" height="10"></a>&nbsp;&nbsp;
+	<a class="pageButton" href="groupList?page=${navi3.currentPage + navi3.pagePerGroup}"><img alt="" src="resources/img/pagenext2.png" height="10"></a><br>
 	<c:if test="${loginId != null && loginId != gm.id }">
 	<div style="margin: 30px; text-align: center;">
 		<a class="cart-btn btn-default" href="javascript:makeGroup()">

@@ -109,6 +109,7 @@ body {
 #search {
   margin-bottom: 16;
 }
+
 </style>
 
 
@@ -329,8 +330,11 @@ body {
 					
 					</a>
 				</td>
-				<td>
+				<td width="450" style="padding-right: 20">
 					${recommend[i].title}
+				</td>
+				<td>
+				&nbsp;&nbsp;&nbsp;
 				</td>
 				<td>
 					${recommend[i].author }
@@ -351,8 +355,11 @@ body {
 					</c:if>
 					</a>
 				</td>
-				<td>
+				<td width="450" style="padding-right: 20">
 					${i.title}
+				</td>
+				<td>
+				&nbsp;&nbsp;&nbsp;
 				</td>
 				<td>
 					${i.author }
@@ -378,8 +385,11 @@ body {
 					</c:if>			
 					</a>
 				</td>
-				<td>
+				<td width="450" style="padding-right: 20">
 					${recommendGender[i].title}
+				</td>
+				<td>
+				&nbsp;&nbsp;&nbsp;
 				</td>
 				<td>
 					${recommendGender[i].author }
@@ -400,8 +410,11 @@ body {
 					</c:if>
 					</a>
 				</td>
-				<td>
+				<td width="450" style="padding-right: 20">
 					${i.title}
+				</td>
+				<td>
+				&nbsp;&nbsp;&nbsp;
 				</td>
 				<td>
 					${i.author }
@@ -426,9 +439,12 @@ body {
 				</c:if>
 				</a>
 			</td>
-			<td>
+			<td width="450" style="padding-right: 20">
 				${AgeRe[i].title}
 			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;
+				</td>
 			<td>
 				${AgeRe[i].author }
 			</td>
@@ -448,8 +464,11 @@ body {
 					</c:if>
 					</a>
 				</td>
-				<td>
+				<td width="450" style="padding-right: 20">
 					${i.title}
+				</td>
+				<td>
+				&nbsp;&nbsp;&nbsp;
 				</td>
 				<td>
 					${i.author }
