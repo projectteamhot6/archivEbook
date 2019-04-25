@@ -32,20 +32,13 @@ public class PayDAO {
 					logger.debug("새롭게 구매");
 					mapper.setReadBook(map);//
 				}
-				else{
-					logger.debug("옛날에 대여했던 책");
-					mapper.updateReadbook(map);//
-				}
-			}
-			else{
-				logger.debug("연장");
-				mapper.updateBook(map);	//
 			}
 		}
 		else{
 			if(num != 1){
 				if(num == 2){
-					logger.debug("옛날에 대여했던 책");
+					logger.debug("옛날에 대여했던 책2");
+					mapper.updatePastBook(map);
 					mapper.updateReadbook(map);//
 				}
 				else{
@@ -55,7 +48,7 @@ public class PayDAO {
 				}
 			}
 			else{
-				logger.debug("연장");
+				logger.debug("연장2");
 				mapper.updateBook(map);	//
 			}
 		}

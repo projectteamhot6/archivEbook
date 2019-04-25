@@ -92,7 +92,18 @@
 		update
 			buy_user
 		set
-			day += #{day}
+			day = day + #{day}
+		where
+			id = #{id}
+			and
+			booknum = #{booknum}
+	</update>
+	<update id="updatePastBook" parameterType="map">
+		update
+			buy_user
+		set
+			day = day + #{day}
+			, inputdate = sysdate
 		where
 			id = #{id}
 			and

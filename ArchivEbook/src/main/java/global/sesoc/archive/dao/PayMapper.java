@@ -21,4 +21,6 @@ public interface PayMapper {
 
 	void updateReadbook(HashMap<String, Object> map);
 
+	void updatePastBook(HashMap<String, Object> map);
+
 }
