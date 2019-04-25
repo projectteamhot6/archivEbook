@@ -63,6 +63,9 @@
 		<if test="email != null and email != ''">
 		, email = #{email}
 		</if>
+		<if test="name != null and name != ''">
+		, name = #{name}
+		</if>		
 	where
 		id = #{id}
    </update>
