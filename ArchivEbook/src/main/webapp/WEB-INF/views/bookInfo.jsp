@@ -391,18 +391,9 @@ textarea.reply_content {
 			<!-- 책 제목 -->
 			<h2>${data[0].title }</h2>
 			<!-- 이북(ebook)이용 가능 여부 -->
-			<c:choose>
-			<c:when test="${ebookExist}">
-			<div class="availability">
-				<span>Ebook이 있습니다</span>
-			</div>
-			</c:when>
-			<c:otherwise>
 			<div class="availability">
 				<span>Ebook 서비스 준비 중입니다</span>
 			</div>
-			</c:otherwise>
-			</c:choose>
 			<!-- 가격 -->
 			<div class="single-product-price">
 				<h2 style="margin-bottom: 20px;"><b>Price &nbsp; </b>${data[0].price }</h2>
