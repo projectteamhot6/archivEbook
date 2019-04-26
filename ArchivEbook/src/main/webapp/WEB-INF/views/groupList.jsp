@@ -229,7 +229,7 @@ $(function(){
 				<li><a href="#0" class="selected" id="switcherSignup">New account</a></li>
 			</ul>
 			<div id="cd-login"> <!-- log in form -->
-				<form class="cd-form"action="login" method="post">
+				<form class="cd-form"action="login" method="post" onsubmit="return checkSignin()">
 					<p class="fieldset">
 						<label class="image-replace" for="signin-id">ID</label>
 						<input class="full-width has-padding has-border" id="signin-id" type="text" placeholder="ID" name="id">
