@@ -470,7 +470,7 @@ $(function(){
 					<tr>
 						<td> Nick-name</td>
 						<td>
-						<input  id="update_nick" name="name" type="text" readonly value="${user_vo.nickname }">
+						<input  id="update_nick" name="nickname" type="text" readonly value="${user_vo.nickname }">
 					</tr>
 					<tr><td>PASSWORD</td><td>
 						<input class="update_form" id="update-password" name="password" type="password"  placeholder="Password">

@@ -183,8 +183,7 @@ function check_update(){
 		alert('check name please');
 		return;
 	}
-
-	if(pw.length < 6 || pw.length > 20){
+	if(pw.length > 1 && pw.length < 6 || pw.length > 20){
 		alert('패스워드의 길이는 6글자 이상 20글자 이하입니다.');
 		return;
 	}
