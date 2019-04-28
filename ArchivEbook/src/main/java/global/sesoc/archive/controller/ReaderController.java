@@ -25,7 +25,7 @@ public class ReaderController {
 	@Autowired
 	ReaderDAO dao;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ReaderController.class);
 	
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	public String home(int num, HttpSession session) {
@@ -78,7 +78,7 @@ public class ReaderController {
 		read.setBooknum(num);
 		read.setId(id);
 		ReadBookVO result = dao.getPrevious(read);
-		logger.debug(result.getStorage());
+		logger.debug("가져올 때 : "+result.getStorage());
 		return result.getStorage();
 	}
 
@@ -92,6 +92,7 @@ public class ReaderController {
 		read.setBooknum(num);
 		read.setId(id);
 		ReadBookVO setting = dao.getPrevious(read);
+		logger.debug("이전 저장{}",setting);
 		String storage = setting.getStorage();
 		String[] settings = storage.split("\"");
 		storage = "";
@@ -106,8 +107,9 @@ public class ReaderController {
 				storage += settings[i];
 			}
 		}
-		logger.debug(storage);
+		logger.debug("수정한거 : "+storage);
 		setting.setStorage(storage);
+		logger.debug("{}"+setting);
 		dao.deletePreviou(setting);
 	}
 

@@ -22,6 +22,7 @@
 			$.ajax({
 				url : 'deletePrevious'
 				, type : 'get'
+				, async : false
 				, error : function(e){
 					console.log(e);
 				}

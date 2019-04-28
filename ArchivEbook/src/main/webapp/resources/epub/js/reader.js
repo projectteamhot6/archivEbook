@@ -3515,6 +3515,7 @@ EPUBJS.Reader.prototype.saveSettings = function(){
 	$.ajax({
 		url:'saveInformation'
 		, type:'POST'
+		, async : false
 		, data:{information : JSON.stringify(this.settings)
 			, annotations : JSON.stringify(this.settings.annotations)
 			, bookmarks : JSON.stringify(this.settings.bookmarks)}
