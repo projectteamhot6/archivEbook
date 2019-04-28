@@ -19,6 +19,8 @@
 			c.GROUPNUM = g.GROUPNUM 
 			and 
 			c.GROUP_MASTER = 1
+		order by
+			groupnum desc
 	</select>
 	
 	<!-- 그룹에서 아이디로 가입한 그룹번호 가져오기  -->

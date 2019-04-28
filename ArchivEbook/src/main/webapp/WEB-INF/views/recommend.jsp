@@ -125,8 +125,8 @@ body {
 			<form id="search" action="searchList" method="get" style="margin-bottom: 16px;">
 				<table class="searchbar">
 				<tr>
-					<th width="110px">
-						<div class="custom-select" style="width:110px; ">
+					<th width="130px">
+						<div class="custom-select" style="width:130px; ">
 							<select size="1" name="detail">
 								<option value="total">total</option>
 								<option value="title">title</option>
@@ -321,10 +321,10 @@ body {
 			<tr>
 				<td>
 					<a href="buyBook?booknum=${recommend[i].booknum}">
-					<c:if test="${list.booknum != 7 }">
+					<c:if test="${recommend[i].booknum != 7 }">
 						<img alt="" src="resources/epub/ebookfile/cover/${recommend[i].booknum}.png" width="50px"><br>
 					</c:if>
-					<c:if test="${list.booknum == 7 }">
+					<c:if test="${recommend[i].booknum == 7 }">
 						<img alt="" src="resources/epub/ebookfile/cover/${recommend[i].booknum}.jpg" width="50px"><br>
 					</c:if>
 					
@@ -347,10 +347,10 @@ body {
 			<tr>
 				<td>
 					<a href="buyBook?booknum=${i.booknum}">
-					<c:if test="${list.booknum != 7 }">
+					<c:if test="${i.booknum != 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${i.booknum}.png" width="50px"><br>
 					</c:if>
-					<c:if test="${list.booknum == 7 }">
+					<c:if test="${i.booknum == 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${i.booknum}.jpg" width="50px"><br>
 					</c:if>
 					</a>
@@ -377,10 +377,10 @@ body {
 			<tr>
 				<td>
 					<a href="buyBook?booknum=${recommendGender[i].booknum}">
-					<c:if test="${list.booknum != 7 }">
+					<c:if test="${recommendGender[i].booknum != 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${recommendGender[i].booknum}.png" width="50px"><br>
 					</c:if>
-					<c:if test="${list.booknum == 7 }">
+					<c:if test="${recommendGender[i].booknum == 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${recommendGender[i].booknum}.jpg" width="50px"><br>
 					</c:if>			
 					</a>
@@ -402,10 +402,10 @@ body {
 			<tr>
 				<td>
 					<a href="buyBook?booknum=${i.booknum}">
-					<c:if test="${list.booknum != 7 }">
+					<c:if test="${ i.booknum != 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${i.booknum}.png" width="50px"><br>
 					</c:if>
-					<c:if test="${list.booknum == 7 }">
+					<c:if test="${i.booknum == 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${i.booknum}.jpg" width="50px"><br>
 					</c:if>
 					</a>
@@ -431,10 +431,10 @@ body {
 		<tr>
 			<td>
 				<a href="buyBook?booknum=${AgeRe[i].booknum}">
-				<c:if test="${list.booknum != 7 }">
+				<c:if test="${AgeRe[i].booknum != 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${AgeRe[i].booknum}.png" width="50px"><br>
 				</c:if>
-				<c:if test="${list.booknum == 7 }">
+				<c:if test="${AgeRe[i].booknum == 7 }">
 					<img alt="" src="resources/epub/ebookfile/cover/${AgeRe[i].booknum}.jpg" width="50px"><br>
 				</c:if>
 				</a>
@@ -456,10 +456,10 @@ body {
 			<tr>
 				<td>
 					<a href="buyBook?booknum=${i.booknum}">
-					<c:if test="${list.booknum != 7 }">
+					<c:if test="${i.booknum != 7 }">
 						<img alt="" src="resources/epub/ebookfile/cover/${i.booknum}.png" width="50px"><br>
 					</c:if>
-					<c:if test="${list.booknum == 7 }">
+					<c:if test="${i.booknum == 7 }">
 						<img alt="" src="resources/epub/ebookfile/cover/${i.booknum}.jpg" width="50px"><br>
 					</c:if>
 					</a>

@@ -89,8 +89,8 @@ textarea.reply_content {
 			<form id="search" action="searchList" method="get" style="margin-bottom: 16px;">
 				<table class="searchbar">
 				<tr>
-					<th width="110px">
-						<div class="custom-select" style="width:110px; ">
+					<th width="130px">
+						<div class="custom-select" style="width:130px; ">
 							<select size="1" name="detail">
 								<option value="total">total</option>
 								<option value="title">title</option>
