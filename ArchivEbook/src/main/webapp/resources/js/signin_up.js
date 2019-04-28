@@ -29,6 +29,7 @@ $(function(){
 		 if(re.test(temp)){
 			alert('특수문자를 입력하였습니다.');
 			$('#signin-id').val('');
+			
 		 }
 	});
 	$("#signin-password").bind("keyup",function(){
@@ -44,7 +45,7 @@ $(function(){
 		var temp=$("#signup-username").val();
 		if(re.test(temp)){
 			alert('특수문자를 입력하였습니다.');
-			$('#signin-password').val('');
+			$('#signup-username').val('');
 		}
 	});
 	$("#signup-nickname").bind("keyup",function(){
