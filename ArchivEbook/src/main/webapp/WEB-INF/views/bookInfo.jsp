@@ -396,7 +396,7 @@ textarea.reply_content {
 			</div>
 			<!-- 가격 -->
 			<div class="single-product-price">
-				<h2 style="margin-bottom: 20px;"><b>Price &nbsp; </b>${data[0].price }won</h2>
+				<h2 style="margin-bottom: 20px;"><b>Price &nbsp; </b>${data[0].price }&#8361;</h2>
 			</div>
 			<!--책 정보 -->
 			<p style="color: hsl(0, 100%, 75%)"> POINT :${totalPoint}</p>
