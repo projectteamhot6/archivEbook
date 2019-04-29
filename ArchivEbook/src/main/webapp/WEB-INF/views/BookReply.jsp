@@ -227,13 +227,13 @@ textarea.reply_content {
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMALE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -271,19 +271,19 @@ textarea.reply_content {
 <form action="reply_book" method="post" id="replyForm">
 <input type="hidden" value="" id="bt" name="title">
 <input type="hidden" value="ebook" id="bp" name="publisher">
-<b>평점</b> <select name="point">
+<b>POINT</b> <select name="point">
 	<option value="1"> 1 </option>
 	<option value="2"> 2 </option>
 	<option value="3"> 3 </option>
 	<option value="4"> 4 </option>
 	<option value="5" selected="selected"> 5 </option>
 </select><br><br>
-<b>리뷰</b><br><textarea rows="10" cols="100" name="content" id="content" class="reply_content"></textarea><br><br>
+<b>REVIEW</b><br><textarea rows="10" cols="100" name="content" id="content" class="reply_content"></textarea><br><br>
 <div style="margin: 30px;padding-left: 290px;">
 	<c:if test="${loginId != null }">
 	<a class="cart-btn btn-default" href="javascript:setReply()">
 		<i class="flaticon-shop"></i>
-		등록
+		WRITE
 	</a>
 	</c:if>
 </div>

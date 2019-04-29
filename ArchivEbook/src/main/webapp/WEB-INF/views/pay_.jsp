@@ -39,12 +39,12 @@ body {
 <table align="center" class="bookinfo">
 <tr>
 <td id="buyButton" >
-<a class="cart-btn btn-default" href="javascript:okayCall()"><i class="flaticon-shop"></i>결제하기</a></td>
+<a class="cart-btn btn-default" href="javascript:okayCall()"><i class="flaticon-shop"></i>PAYMENT</a></td>
 </tr>
 <tr><td ><p><br></p></td></tr>
 <tr>
 <td id="cartButton">
-<a class="cart-btn btn-default" href="javascript:cancel()"><i class="flaticon-shop"></i>취소하기</a></td>
+<a class="cart-btn btn-default" href="javascript:cancel()"><i class="flaticon-shop"></i>CANCEL</a></td>
 </tr>
 </table>
 <script type="text/javascript">
@@ -62,7 +62,7 @@ function okayCall(){
 		, type : 'post'
 		, data : {type : type, price : price}
 		, success : function(){
-			alert('회원 계정 페이지로 넘어갑니다.');
+			alert('Proceed to the Member Account page.');
 			opener.location.href="my-account";
 			self.close();
 		}

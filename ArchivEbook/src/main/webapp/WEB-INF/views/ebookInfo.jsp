@@ -338,13 +338,13 @@ textarea.reply_content {
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMALE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -402,20 +402,20 @@ textarea.reply_content {
 				<h3>1 week $2.00 &nbsp;| 2 week $4.00 &nbsp;| 1 month $6.00</h3>
 			</div>
 			<!--책 정보 -->
-			<p style="color: #878787">저자 	| ${ebook.author}<br>출판사	| ${ebook.publisher}</p>
-			<p style="color: hsl(0, 100%, 75%)"> 평점 :${totalPoint}</p>
+			<p style="color: #878787">AUTHOR 	| ${ebook.author}<br>PUBLISHER	| ${ebook.publisher}</p>
+			<p style="color: hsl(0, 100%, 75%)"> POINT :${totalPoint}</p>
 			<div class="product-attributes clearfix">
 			<c:if test="${loginId != null }">
             <span>
                <a class="cart-btn btn-default" href="buyBook?booknum=${ebook.booknum }">
                   <i class="flaticon-shop"></i>
-                  구매하기
+                  PAYMENT
                </a>
             </span><p></p>
             <span>
                <a class="cart-btn btn-default" href="javascript:wantBook('${ebook.booknum }')">
                   <i class="flaticon-shop"></i>
-                  카트에 넣기
+                  WANT
                </a>
             </span>
             </c:if>
@@ -428,21 +428,21 @@ textarea.reply_content {
 <div class="tabset">
   <!-- Tab 1 -->
   <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
-  <label for="tab1">서평 목록</label>
+  <label for="tab1">REVIEW LIST</label>
   <!-- Tab 2 -->
   <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
-  <label for="tab2">서평 쓰기</label>
+  <label for="tab2">WIRTE REVIEW</label>
   
   <div class="tab-panels">
     <section id="marzen" class="tab-panel">
-      <h2>서평 목록</h2><br>
+      <h2>LIST</h2><br>
       <c:choose>
       <c:when test="${book_reply.size() != 0 }">
       <table style="margin-left: 0px">
       <c:forEach var="list" items="${book_reply}">
       		<tr>
       			<td colspan="2" style="text-align: left; width: 400px; font-size: 17px; font-weight: lighter; color : Gray">${list.nickname }</td>
-      			<td style="text-align: right; width: 100px; font-size: 17px; font-weight: lighter;"> 평점</td>
+      			<td style="text-align: right; width: 100px; font-size: 17px; font-weight: lighter;"> POINT</td>
       			<td style="text-align: right; width: 100px; font-size: 17px; font-weight: lighter; color : Orange"> ${list.point }</td>
       		</tr>
       		<tr>
@@ -452,20 +452,20 @@ textarea.reply_content {
       </table>
       	</c:when>
       	<c:otherwise>
-      	<p>아직 작성된 서평이 없습니다.</p>
+      	<p>There's no written review yet.</p>
 		</c:otherwise>
       	</c:choose>
 	</section>
 	<section id="rauchbier" class="tab-panel">
-		<p><strong>서평 씁니다</strong></p>
-			 평점 :	<select name="point" id="review_point">
+		<p><strong>REVIEW</strong></p>
+			 POINT :	<select name="point" id="review_point">
 						<option value="1"> 1 </option>
 						<option value="2"> 2 </option>
 						<option value="3"> 3 </option>
 						<option value="4"> 4 </option>
 						<option value="5" selected="selected"> 5 </option>
 					</select><br><br>
-			리뷰 :<br>	<textarea rows="10" cols="100" name="content" id="content" class="reply_content"></textarea><br><br>
+			REVIEW :<br>	<textarea rows="10" cols="100" name="content" id="content" class="reply_content"></textarea><br><br>
 			<c:if test="${loginId != null }">
 			<a class="cart-btn btn-default" href="javascript:submitForm()">
 				<i class="flaticon-shop"></i> write</a>
@@ -481,8 +481,8 @@ textarea.reply_content {
 <script type="text/javascript">
 function submitForm(){
 	var content = $('#content').val();
-	if(content.length < 7){
-		alert('review를 좀 더 길게 남겨주세요.');
+	if(content.length < 5){
+		alert('Please leave a longer review.');
 		content.focus();
 		content.select();
 		return false;
@@ -495,7 +495,7 @@ function submitForm(){
 		, type : 'post'
 		, data : {content : content, title : title, publisher : publisher, point : point}
 		, success : function(){
-			alert('서평을 남겼습니다.');
+			alert('YOU left a book review.');
 			location.href="";
 		}
 	});
@@ -508,10 +508,10 @@ function wantBook(num){
 		, dataType : 'text'
 		, success : function(e){
 			if(e == 'fail'){
-				alert('이미 찜한 책입니다.');
+				alert('This book already exists in the LIBRARY.');
 			}
 			else{
-				alert('찜목록에 추가되었습니다.');
+				alert('be added to the LIBRARY');
 			}
 		}
 	})

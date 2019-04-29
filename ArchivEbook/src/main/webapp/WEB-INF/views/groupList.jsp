@@ -294,13 +294,13 @@ $(function(){
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMALE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -354,7 +354,7 @@ $(function(){
 				</td>
 				<td rowspan="2" align="center"><!-- 열3: 가입버튼 -->
 				<c:if test="${loginId != null}">
-				<a class="groupjoin-btn btn-default" href="javascript:joinGroup(${list.groupnum })"><i class="flaticon-shop"></i>가입</a>
+				<a class="groupjoin-btn btn-default" href="javascript:joinGroup(${list.groupnum })"><i class="flaticon-shop"></i>JOIN</a>
 				</c:if>
 				</td>
 			</tr>
@@ -382,7 +382,7 @@ $(function(){
 	<div style="margin: 30px; text-align: center;">
 		<a class="cart-btn btn-default" href="javascript:makeGroup()">
 		<i class="flaticon-shop"></i>
-			그룹 만들기
+			MAKE
 		</a>
     </div>
 	</c:if>
@@ -400,7 +400,7 @@ function makeGroup() {
 				location.href="makeGroup"
 			}
 			else{
-				alert('이미 그룹을 만드셨습니다.');
+				alert('You have already created a group.');
 			}
 		}
 	});
@@ -422,13 +422,13 @@ function joinGroup(num){
 					, dataType : 'text'
 					, success : function(e){
 						if(e == 1){
-							alert('가입되었습니다.');
+							alert("You're signed up.");
 						}
 					}
 				})
 			}
 			else{
-				alert('이미 가입되어있습니다.');
+				alert('Already registered.');
 			}
 		}
 	})

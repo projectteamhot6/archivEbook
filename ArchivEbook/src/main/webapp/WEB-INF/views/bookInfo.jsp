@@ -337,13 +337,13 @@ textarea.reply_content {
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMALE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -392,15 +392,15 @@ textarea.reply_content {
 			<h2>${data[0].title }</h2>
 			<!-- 이북(ebook)이용 가능 여부 -->
 			<div class="availability">
-				<span>Ebook 서비스 준비 중입니다</span>
+				<span>Ebook service in preparation.</span>
 			</div>
 			<!-- 가격 -->
 			<div class="single-product-price">
 				<h2 style="margin-bottom: 20px;"><b>Price &nbsp; </b>${data[0].price }</h2>
 			</div>
 			<!--책 정보 -->
-			<p style="color: hsl(0, 100%, 75%)"> 평점 :${totalPoint}</p>
-			<p style="color: #878787">저자 	| ${data[0].author}<br>출판사	| ${data[0].publisher}<br> 출간일	| ${data[0].pubdate }<br>ISBN	| ${data[0].isbn}</p>
+			<p style="color: hsl(0, 100%, 75%)"> POINT :${totalPoint}</p>
+			<p style="color: #878787">AUTHOR 	| ${data[0].author}<br>PUBLISHER	| ${data[0].publisher}<br> PUBDATE	| ${data[0].pubdate }<br>ISBN	| ${data[0].isbn}</p>
 			<!-- <div id="product-comments-block-extra">
 			<ul class="comments-advices">
 				<li>
@@ -412,7 +412,7 @@ textarea.reply_content {
 			<div style="margin: 30px">
 			 <a class="cart-btn btn-default" href="javascript:clickLib()">
                   <i class="flaticon-shop"></i>
-                 		도서관 위치 찾기
+                 		Find Library Location
                </a>
                </div>
 		</div>
@@ -423,38 +423,38 @@ textarea.reply_content {
 <div class="tabset">
   <!-- Tab 1 -->
   <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
-  <label for="tab1">짧은 소개글</label>
+  <label for="tab1">a short introduction</label>
   <!-- Tab 2 -->
   <input type="radio" name="tabset" id="tab2" aria-controls="getReply">
-  <label for="tab2">서평 목록</label>
+  <label for="tab2">REVIEW LIST</label>
   <!-- Tab 3 -->
   <input type="radio" name="tabset" id="tab3" aria-controls="rauchbier">
-  <label for="tab3">서평 쓰기</label>
+  <label for="tab3">WRITE REVIEW</label>
   <!-- Tab 4 -->
   <input type="radio" name="tabset" id="tab4" aria-controls="dunkles">
-  <label for="tab4">지도 확인</label>
+  <label for="tab4">LIBRARY</label>
   
   <div class="tab-panels">
     <section id="marzen" class="tab-panel">
       <h2>${data[0].title }</h2>
-      <p><strong>책소개</strong></p>
+      <p><strong>BOOK</strong></p>
 	<c:if test="${data.get(0).getDescription() != null}">
 		<p style="font-size: 15spx;font-weight: bold;">${data.get(0).getDescription()}</p>
 	</c:if>
 <!-- 책 소개 내용이 없으면 없다고 출력 -->
 	<c:if test="${data.get(0).getDescription() == null}">
-		<p style="font-size: 15spx;font-weight: bold;">책 소개가 없는 도서입니다</p>	
+		<p style="font-size: 15spx;font-weight: bold;">This is a book without a book introduction.</p>	
  	</c:if>
   </section>
     <section id="getReply" class="tab-panel">
-      <h2>서평 목록</h2><br>
+      <h2>LIST</h2><br>
       <c:choose>
       <c:when test="${book_reply.size() != 0 }">
       <table style="margin-left: 0px">
       <c:forEach var="list" items="${book_reply}">
       		<tr>
       			<td colspan="2" style="text-align: left; width: 400px; font-size: 17px; font-weight: lighter; color : Gray">${list.nickname }</td>
-      			<td style="text-align: right; width: 100px; font-size: 17px; font-weight: lighter;"> 평점</td>
+      			<td style="text-align: right; width: 100px; font-size: 17px; font-weight: lighter;"> POINT</td>
       			<td style="text-align: right; width: 100px; font-size: 17px; font-weight: lighter; color : Orange"> ${list.point }</td>
       		</tr>
       		<tr>
@@ -464,20 +464,20 @@ textarea.reply_content {
       </table>
       	</c:when>
       	<c:otherwise>
-      	<p>아직 작성된 서평이 없습니다.</p>
+      	<p>There's no written review yet.</p>
 		</c:otherwise>
       	</c:choose>
     </section>
     <section id="rauchbier" class="tab-panel">
-      <p><strong>서평 씁니다</strong></p>
-			 평점 :	<select name="point" id="review_point">
+      <p><strong>REVIEW</strong></p>
+			 POINT :	<select name="point" id="review_point">
 						<option value="1"> 1 </option>
 						<option value="2"> 2 </option>
 						<option value="3"> 3 </option>
 						<option value="4"> 4 </option>
 						<option value="5" selected="selected"> 5 </option>
 					</select><br><br>
-			리뷰 :<br>	<textarea rows="10" cols="100" name="content" class="reply_content" id="content"></textarea><br><br>
+			REVIEW :<br>	<textarea rows="10" cols="100" name="content" class="reply_content" id="content"></textarea><br><br>
 			<c:if test="${loginId != null }">
 			<a class="cart-btn btn-default" href="javascript:submitForm()">
 				<i class="flaticon-shop"></i> write</a>
@@ -506,7 +506,7 @@ textarea.reply_content {
 function submitForm(){
 	var content = $('#content').val();
 	if(content.length < 7){
-		alert('review를 좀 더 길게 남겨주세요.');
+		alert('Please leave a longer review.');
 		content.focus();
 		content.select();
 		return false;
@@ -519,7 +519,7 @@ function submitForm(){
 		, type : 'post'
 		, data : {content : content, title : title, publisher : publisher, point : point}
 		, success : function(){
-			alert('서평을 남겼습니다.');
+			alert('YOU left a book review.');
 			location.href="";
 		}
 	});
@@ -545,7 +545,7 @@ function submitForm(){
         		
         		var isbn ='${data[0].isbn}';
         		
-        		if(isbn == null || isbn == ''){alert('이 도서는 검색이 불가능합니다.');return;}
+        		if(isbn == null || isbn == ''){alert('This book is not searchable.');return;}
         		        		
         		runTrans(isbn);
         	}
@@ -559,7 +559,7 @@ function submitForm(){
 					data:		{isbn: isbn},
 					dataType:	'json',
 					success:	libList,
-					error:		function(){alert('전송 실패');}
+					error:		function(){alert('Transfer failure');}
 				});				
 	        }
 		
@@ -567,7 +567,7 @@ function submitForm(){
 				
 				
 				if(list == "" || list == null || list[0].name == "출판시도서목록센터"){
-					alert('해당 도서를 가지고 있는 도서관이 없습니다');
+					alert('There is no library with that book.');
 				}
 				else{
 					//div 태그에 도서관 목록 삽입

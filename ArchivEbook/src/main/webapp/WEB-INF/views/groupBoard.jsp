@@ -319,13 +319,13 @@ body {
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMLAE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -369,11 +369,11 @@ function writeForm(){
 	var title_board = $('#title').val();
 	var content_board = $('#text').val();
 	if(title_board.length < 3 || title_board.length > 21){
-		alert('제목을 4글자 이상 20글자 이하로 써주세요.');
+		alert('Please write the title with at least 4 characters and not more than 20 characters.');
 		return;
 	}
 	if(content_board.length < 3 || title_board.length > 500){
-		alert('제목을 4글자 이상 300글자 이하로 써주세요.');
+		alert('Please write more than 4 characters and less than 300 characters.');
 		return;
 	}
 	$('#paper').submit();
@@ -428,11 +428,11 @@ function updateBoard_send(num){
 	var title_board = $('#title').val();
 	var content_board = $('#text').val();
 	if(title_board.length < 3 || title_board.length > 21){
-		alert('제목을 4글자 이상 20글자 이하로 써주세요.');
+		alert('Please write the title with at least 4 characters and not more than 20 characters.');
 		return;
 	}
 	if(content_board.length < 3 || title_board.length > 500){
-		alert('제목을 4글자 이상 300글자 이하로 써주세요.');
+		alert('Please write more than 4 characters and less than 300 characters.');
 		return;
 	}
 	$.ajax({
@@ -440,7 +440,7 @@ function updateBoard_send(num){
 		, type : 'post'
 		, data : {title : title_board, content : content_board, bnum_group : num}
 		, success : function(){
-			alert('글이 수정되었습니다.');
+			alert('UPDATE');
 			location.href = "";
 		}
 	})
@@ -521,7 +521,7 @@ function updateBoard_send(num){
 function reply_submit(num){
 	var re = $('#replytext'+num).val();
 	if(re.length < 1 || re.length > 300){
-		alert('댓글은 1글자 이상 300글자 미만으로 입력해  주세요.');
+		alert('Please enter comments with at least 1 character and less than 300 characters.');
 		return;
 	}
 	$('#reply_form'+num).submit();

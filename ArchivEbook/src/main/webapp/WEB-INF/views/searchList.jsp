@@ -242,13 +242,13 @@ body {
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMALE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -303,10 +303,10 @@ body {
 					<table>
 					<tr><td><!-- 공백 --></td></tr>
 					<tr><td class="buyButton" height="70">
-					<a class="cart-btn btn-default" href="buyBook?booknum=${i.booknum }"><i class="flaticon-shop"></i>구매하기</a>
+					<a class="cart-btn btn-default" href="buyBook?booknum=${i.booknum }"><i class="flaticon-shop"></i>BUY</a>
 					</td></tr>
 					<tr><td class="cartButton" height="70">
-					<a class="cart-btn btn-default"  href="javascript:wantBook('${i.booknum }')"><i class="flaticon-shop"></i>찜하기</a>
+					<a class="cart-btn btn-default"  href="javascript:wantBook('${i.booknum }')"><i class="flaticon-shop">WISH</i></a>
 					</td></tr>
 					<tr><td><!-- 공백 --></td></tr>
 					</table>
@@ -337,7 +337,7 @@ body {
 		</c:if>
 	</table>
 	<c:if test="${ebook==null || ebook.size() == 0}">
-			<div style="height: 60px; text-align: center;" align="center"><br><p>검색 내용과 일치하는 eBook이 없습니다</p></div>
+			<div style="height: 60px; text-align: center;" align="center"><br><p>No matching Ebook found </p></div>
 	</c:if>
 </div>
 <!-- ///////////////////////////////////////////일반 검색 목록 -->
@@ -374,7 +374,7 @@ body {
 			<!-- 행2 -->
 			<tr>
 				<td class="row2col3"><!-- 열3: 가격 -->
-					<p><b>Price &nbsp;</b>${i.price}원</p>
+					<p><b>Price &nbsp;</b>${i.price}W</p>
 				</td>
 
 				<%--<td id="presentButton"><!-- 열5: 선물 -->
@@ -395,7 +395,7 @@ body {
 		</c:if>
 	</table>
 	<c:if test="${data == null || data.size() == 0}">
-			<div style="height: 60px; text-align: center;" align="center"><br><p>검색 내용과 일치하는 도서가 없습니다</p></div>
+			<div style="height: 60px; text-align: center;" align="center"><br><p>No matching book found</p></div>
 	</c:if>
 </div>
 <script type="text/javascript">
@@ -406,10 +406,10 @@ function wantBook(num){
 		, dataType : 'text'
 		, success : function(e){
 			if( e == 'fail'){
-				alert('이미 찜한 책입니다.');
+				alert('This book already exists in the LIBRARY.');
 			}
 			else{
-				alert('찜목록에 추가되었습니다.');
+				alert('be added to the LIBRARY');
 			}
 		}
 	})

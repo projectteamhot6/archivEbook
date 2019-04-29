@@ -338,13 +338,13 @@ textarea.group_intro {
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMALE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -380,12 +380,12 @@ textarea.group_intro {
 	<form method="post" action="makeGroup" id="makeGroup_form">
 		<table>
 			<tr>
-				<td>그룹 이름</td>
+				<td>GROUP NAME</td>
 				<td><input type="text" name="groupname" id="groupname"><br>
 					<br></td>
 			</tr>
 			<tr>
-				<td>그룹 소개</td>
+				<td>GROUP INTRODUCE</td>
 				<td><textarea class="group_intro" name="groupintroduce" id="groupintroduce"></textarea><br>
 					<br></td>
 			</tr>
@@ -394,7 +394,7 @@ textarea.group_intro {
 				<div style="margin: 30px; text-align: center;">
 					<a class="cart-btn btn-default" href="javascript:make_group()">
 					<i class="flaticon-shop"></i>
-						그룹 만들기
+						MAKE
 					</a>
    				 </div>
 				<!-- <input type="button" id="makeGroup" value="생성"> --></td>
@@ -408,11 +408,11 @@ textarea.group_intro {
 		var gn = $('#groupname').val();
 		var gi = $('#groupintroduce').val();
 		if(gn.length < 1){
-			alert('그룹이름을 적어주세요.');
+			alert('GROUP NAME PLEASE');
 			return;
 		}
 		if(gi.length < 10){
-			alert('그룹 소개를 더 길게 입력해주세요.');
+			alert('Please enter a longer group introduction.');
 			return;
 		}
 		$('#makeGroup_form').submit();

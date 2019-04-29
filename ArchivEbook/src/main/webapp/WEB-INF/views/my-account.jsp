@@ -403,13 +403,13 @@ $(function(){
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMALE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -439,22 +439,22 @@ $(function(){
 <div class="tabset">
   <!-- Tab 1 -->
   <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
-  <label for="tab1">회원 정보</label>
+  <label for="tab1">USER INFO</label>
   <!-- Tab 2 -->
   <input type="radio" name="tabset" id="tab2" aria-controls="getReply">
-  <label for="tab2">나의 그룹</label>
+  <label for="tab2">USER GROUP</label>
   <!-- Tab 3 -->
   <input type="radio" name="tabset" id="tab3" aria-controls="rauchbier">
-  <label for="tab3">내가 남긴 서평</label>
+  <label for="tab3">USER REVIEW</label>
   <!-- Tab 4 -->
   <input type="radio" name="tabset" id="tab4" aria-controls="dunkles">
-  <label for="tab4">이전에 구매했던 도서 </label>
+  <label for="tab4">EXPIRED BOOKS</label>
   <!-- Tab 5 -->
   <input type="radio" name="tabset" id="tab5" aria-controls="presents">
-  <label for="tab5">대여 중인 도서 </label>
+  <label for="tab5">READABLE</label>
   <!-- Tab 6 -->
   <input type="radio" name="tabset" id="tab6" aria-controls="future">
-  <label for="tab6">찜한 도서 </label>
+  <label for="tab6">WISH LIST</label>
   
 	<div class="tab-panels">
 		<section id="marzen" class="tab-panel">
@@ -485,7 +485,7 @@ $(function(){
 					<tr><td>Birth</td><td>
 						<input  name="birthday" value="${user_vo.birthday }" type="text" readonly>
 					</td>
-					<tr><td>GENDER</td><td><c:if test="${user_vo.gender == 0 }">남성</c:if><c:if test="${user_vo.gender == 1 }">여성</c:if>
+					<tr><td>GENDER</td><td><c:if test="${user_vo.gender == 0 }">MALE</c:if><c:if test="${user_vo.gender == 1 }">FEMALE</c:if>
 					<input type="hidden" value="${user_vo.gender}" name="gender" > 
 					</td>
 					<tr><td colspan="2" style="text-align: center;">
@@ -552,7 +552,7 @@ $(function(){
 				<div>
 					<table>
 						<tr style="background-color: #56aaff; color: white;">
-							<th width="150" align="center">도서명</th><th>내가 남긴 서평</th><th width="100">나의 평점</th><th width="100">날짜</th>
+							<th width="150" align="center">TITLE</th><th>REVIEW</th><th width="100">POINT</th><th width="100">DATE</th>
 						</tr>
 						<c:forEach items="${reply_list_user}" var="list">
 							<tr>
@@ -563,7 +563,7 @@ $(function(){
 									${list.content }
 								</td>
 								<td align="center">
-									${list.point }점
+									${list.point }
 								</td>
 								<td align="center">
 									${list.inputdate}
@@ -585,11 +585,11 @@ $(function(){
 			</div>
 			</c:when>
 			<c:otherwise>
-			작성한 글이 없습니다.
+			YOU didn't write anything.
 			<div style="margin: 30px">
 			 	<a class="cart-btn btn-default" href="book_reply">
                 	 <i class="flaticon-shop"></i>
-					서평을 작성하러 가시겠습니까?
+					Would you like to go make a book review?
                	</a>
              </div>
 			</c:otherwise>

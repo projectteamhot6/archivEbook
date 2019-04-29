@@ -230,13 +230,13 @@ table.makeFormTable {
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-gender">Gender</label>
-						여성 <input type="radio" value="1" name="gender" checked> &nbsp; 남성<input type="radio" name="gender" value="0">
+						FEMALE <input type="radio" value="1" name="gender" checked> &nbsp; MALE<input type="radio" name="gender" value="0">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
 					
 					<p class="fieldset">
 						<label class="image-replace" for="signup-birth">BirthDay</label>
-						생일을 입력해 주세요.
+						BIRTHDAY
 						<input type="date" name="birthday" id="birth">
 						<span class="cd-error-message">Error message here!</span>
 					</p>
@@ -277,9 +277,9 @@ table.makeFormTable {
       </td>
       <td colspan="2" width="500">
          <table style="color: #878787">
-            <tr><td width="70">저자</td><td>${want_book_info.author}</td></tr>
-            <tr><td width="70">제목</td><td>${want_book_info.title }</td></tr>
-            <tr><td width="70">출판사</td><td>${want_book_info.publisher }</td></tr>
+            <tr><td width="70">AUTHOR</td><td>${want_book_info.author}</td></tr>
+            <tr><td width="70">TITLE</td><td>${want_book_info.title }</td></tr>
+            <tr><td width="70">PUBLISHER</td><td>${want_book_info.publisher }</td></tr>
          </table>
       </td>
 	 </tr>
@@ -287,7 +287,7 @@ table.makeFormTable {
 	      <td width="220">
 	         <table class="paytable1">
 	            <tr>
-	               <td colspan="3">대여기간</td>
+	               <td colspan="3">RENTAL PERIOD</td>
 	            </tr>
 	            <tr>
 	               <td>7days</td><td>$2.00</td><td><input type="radio" name="day" id="day7" value="7"></td>
@@ -300,12 +300,12 @@ table.makeFormTable {
 	      </td>
 	      <td width="280">
 	         <table class="paytable2">
-	            <tr><td>결제금액</td><td><div id="price"></div></td></tr>
-	            <tr><td colspan="3"><span style="color : hsl(0, 20%, 50%)">결제 방식</span></td></tr>
+	            <tr><td>AMOUNT</td><td><div id="price"></div></td></tr>
+	            <tr><td colspan="3"><span style="color : hsl(0, 20%, 50%)">WAY</span></td></tr>
 	            <tr>
-	               <td>무통장 입금</td><td colspan="2"><input type="radio" name="pay_" id="cash" value=""></td>
+	               <td>CASH</td><td colspan="2"><input type="radio" name="pay_" id="cash" value=""></td>
 	            </tr><tr>
-	               <td>카드</td><td><input type="radio" name="pay_" id="card"></td><td><div id="card_cor"></div></td>
+	               <td>CARD</td><td><input type="radio" name="pay_" id="card"></td><td><div id="card_cor"></div></td>
 	            </tr>
 	         </table>
 	      </td>
@@ -313,9 +313,9 @@ table.makeFormTable {
 	   <tr style="text-align: center">
 	      <td colspan="2">
 	      	<table><tr><td style="float: right;">
-	          <a class="cart-btn btn-default" href="javascript:openPayWindow()"><i class="flaticon-shop"></i>결제하기</a>
+	          <a class="cart-btn btn-default" href="javascript:openPayWindow()"><i class="flaticon-shop"></i>PAYMENT</a>
 	        </td><td style="float: left;">
-	          <a class="cart-btn btn-default" href="javascript:cancelForm()"><i class="flaticon-shop"></i>취소하기</a>
+	          <a class="cart-btn btn-default" href="javascript:cancelForm()"><i class="flaticon-shop"></i>취CANCEL</a>
 	      	</td></tr></table>
 	      </td>
 	   </tr>
@@ -339,12 +339,12 @@ $(function(){
 	$('#cash').on('click',deleteForm);
 });
 	var a =	'<select name="card" id="card_cor_check">';
-	a += '<option value="1" selected>현대</option>';
-	a += '<option value="2">신한</option>';
-	a += '<option value="3">국민</option>';
-	a += '<option value="4">농협</option>';
-	a += '<option value="5">광주</option>';		
-	a += '<option value="6">기업</option>';		
+	a += '<option value="1" selected>HYUNDAI</option>';
+	a += '<option value="2">SHINHAN</option>';
+	a += '<option value="3">KB</option>';
+	a += '<option value="4">NH</option>';
+	a += '<option value="5">GWANJU</option>';		
+	a += '<option value="6">IBK</option>';		
 	a += '</select>';
 function cancelForm(){
 		location.href="";
@@ -364,13 +364,13 @@ function deleteForm(){
 function openPayWindow(){
 	var check1 = $('#price').html();
 	if(check1 == ""){
-		alert('기간을 골라주세요.');
+		alert('SELECT PERIOD');
 		return;
 	}
 	var check2 = $('#cash').val();
 	var check3 = $('#card_cor_check').val();
 	if(check2 == "" && check3 == null){
-		alert('결제 방식을 선택해 주세요.');
+		alert('Please choose the payment method.');
 		return;
 	}
 	switch ( check3 ) {

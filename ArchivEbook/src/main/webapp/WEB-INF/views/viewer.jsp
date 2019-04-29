@@ -18,7 +18,7 @@
         
 		<c:if test="${previousLocationCfi != null}">
 		<script type="text/javascript">
-		if(!confirm('이어서 읽으시겠습니까?')){
+		if(!confirm('CONTINUE?')){
 			$.ajax({
 				url : 'deletePrevious'
 				, type : 'get'
