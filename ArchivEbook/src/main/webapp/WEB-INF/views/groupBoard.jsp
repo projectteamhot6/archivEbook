@@ -390,7 +390,7 @@ function writeForm(){
 <div id="wrapper">
 	<form id="paper" method="post" action="write" style="width: 800px">
 		<div id="margin">Title: <input id="title" type="text" name="title" style="border-radius:0px;"></div>
-		<textarea placeholder="내용을 입력해주세요." id="text" name="content" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; width: 800px;"></textarea>  
+		<textarea placeholder="Please enter the contents." id="text" name="content" rows="4" style="overflow: hidden; word-wrap: break-word; resize: none; height: 160px; width: 800px;"></textarea>  
 		<a id="sendBoard" class="btn-default" href="javascript:writeForm()"><i class="flaticon-shop"></i>send</a>
 	</form>
 </div>

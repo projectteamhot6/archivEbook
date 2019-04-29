@@ -315,7 +315,7 @@ table.makeFormTable {
 	      	<table><tr><td style="float: right;">
 	          <a class="cart-btn btn-default" href="javascript:openPayWindow()"><i class="flaticon-shop"></i>PAYMENT</a>
 	        </td><td style="float: left;">
-	          <a class="cart-btn btn-default" href="javascript:cancelForm()"><i class="flaticon-shop"></i>취CANCEL</a>
+	          <a class="cart-btn btn-default" href="javascript:cancelForm()"><i class="flaticon-shop"></i>CANCEL</a>
 	      	</td></tr></table>
 	      </td>
 	   </tr>

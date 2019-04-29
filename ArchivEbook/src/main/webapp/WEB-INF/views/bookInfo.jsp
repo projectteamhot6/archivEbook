@@ -396,7 +396,7 @@ textarea.reply_content {
 			</div>
 			<!-- 가격 -->
 			<div class="single-product-price">
-				<h2 style="margin-bottom: 20px;"><b>Price &nbsp; </b>${data[0].price }</h2>
+				<h2 style="margin-bottom: 20px;"><b>Price &nbsp; </b>${data[0].price }won</h2>
 			</div>
 			<!--책 정보 -->
 			<p style="color: hsl(0, 100%, 75%)"> POINT :${totalPoint}</p>
@@ -571,7 +571,7 @@ function submitForm(){
 				}
 				else{
 					//div 태그에 도서관 목록 삽입
-					var lib = '<p>소장 도서관 목록</p><br><br>';
+					var lib = '<p>List of libraries</p><br><br>';
 					var acute = "'";
 					$.each(list, function(key, data){
 						lib += '<div style="margin: 30px"><a class="cart-btn btn-default" href="javascript:codeAddress('+ acute + data.address + acute;

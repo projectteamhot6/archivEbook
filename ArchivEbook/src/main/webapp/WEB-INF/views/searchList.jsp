@@ -374,7 +374,7 @@ body {
 			<!-- 행2 -->
 			<tr>
 				<td class="row2col3"><!-- 열3: 가격 -->
-					<p><b>Price &nbsp;</b>${i.price}W</p>
+					<p><b>Price &nbsp;</b>${i.price}won</p>
 				</td>
 
 				<%--<td id="presentButton"><!-- 열5: 선물 -->

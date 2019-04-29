@@ -78,7 +78,7 @@ public class MemberController {
 				String year = inputdate[0];
 				String month = inputdate[1];
 				String day = inputdate[2];
-				lib.get(i).setInputdate(year+"년 "+month+"월 "+day+"일");
+				lib.get(i).setInputdate(year+"/ "+month+"/ "+day);
 				
 				if(lib.get(i).getDay() < calDateDays){
 					past.add(lib.get(i));
