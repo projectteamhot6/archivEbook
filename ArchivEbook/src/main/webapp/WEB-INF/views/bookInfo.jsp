@@ -423,7 +423,7 @@ textarea.reply_content {
 <div class="tabset">
   <!-- Tab 1 -->
   <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
-  <label for="tab1">a short introduction</label>
+  <label for="tab1">Short introduction</label>
   <!-- Tab 2 -->
   <input type="radio" name="tabset" id="tab2" aria-controls="getReply">
   <label for="tab2">REVIEW LIST</label>
@@ -453,13 +453,15 @@ textarea.reply_content {
       <table style="margin-left: 0px">
       <c:forEach var="list" items="${book_reply}">
       		<tr>
-      			<td colspan="2" style="text-align: left; width: 400px; font-size: 17px; font-weight: lighter; color : Gray">${list.nickname }</td>
-      			<td style="text-align: right; width: 100px; font-size: 17px; font-weight: lighter;"> POINT</td>
-      			<td style="text-align: right; width: 100px; font-size: 17px; font-weight: lighter; color : Orange"> ${list.point }</td>
+      			<td colspan="2" style="text-align: left; width: 200px; font-size: 17px; font-weight: lighter; color : Gray"><b>${list.nickname }</b></td>
+      			<td style="text-align: right; width: 50px; font-size: 17px; font-weight: lighter;"> <b>POINT</b></td>
+      			<td style="text-align: right; width: 50px; font-size: 17px; font-weight: lighter; color : #007fff"> ${list.point }</td>
+      			<td width="700"><!-- 공백 --></td>
       		</tr>
       		<tr>
-      			<td colspan="4" style="text-align: left;"><pre style="font-weight: bold; font-size: 20px">${list.content}</pre></td>
+      			<td colspan="5" style="text-align: left;" width="1000"><p style="font-size: 20px">${list.content}</p></td>
       		</tr>
+      		<tr><td colspan="5" height="30" style="border-top-style: solid; border-top-color: #76BBFF"></td></tr>
       </c:forEach>
       </table>
       	</c:when>
