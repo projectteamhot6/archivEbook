@@ -117,7 +117,7 @@ table.makeFormTable {
 				<li><a href="groupList">community</a></li>
 				<li><a href="recommend">recommend</a></li>
 				<c:if test="${loginId != null }">
-				<li><a href="book_reply">reply</a></li>
+				<li><a href="book_reply">review</a></li>
 				</c:if>
 			</ul>
 			</td><td>
