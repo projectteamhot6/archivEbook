@@ -195,8 +195,8 @@ textarea.reply_content {
 <!-- ///////////////////////////////////헤더임///////////////////////////////////////// -->
 <div class="header" id="header">
 	<div class="headerIn">
-		<h1 style="left: 40;"><a href="./"><img alt="" src="resources/img/archivelogo22.png" height="100"></a></h1>
-			<form id="search" action="searchList" method="get">
+		<h1 style="left: 0px;width: 266px;"><a href="./" style="margin-left: 40px;"><img alt="" src="resources/img/archivelogo22.png" height="100"></a></h1>
+         <form id="search" action="searchList" method="get" style="margin-bottom: 16px;">
 				<table class="searchbar">
 				<tr>
 					<th width="130px">
